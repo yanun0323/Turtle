@@ -5,4 +5,4 @@
 > Develop with SwiftUI framework
 
 ## ScreenShot
-![Image](https://imgur.com/nK0SjSM.gif)
+![Image](https://i.imgur.com/nK0SjSM.gif)
