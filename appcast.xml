@@ -4,6 +4,21 @@
         <title>Turtle</title>
 
         <item>
+            <title>0.7.5a</title>
+            <pubDate>Wed, 19 Jul 2023 23:52:29 +0800</pubDate>
+            <sparkle:version>1T75Ya</sparkle:version>
+            <description sparkle:format="plain-text">抓了一些小蟲
+            </description>
+            <sparkle:shortVersionString>0.7.5a</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:tags><sparkle:criticalUpdate></sparkle:criticalUpdate></sparkle:tags>
+            <enclosure
+                url="https://raw.githubusercontent.com/yanun0323/Turtle/main/Turtle_0.7.5a.zip" type="application/octet-stream"
+                sparkle:edSignature="kUWJDqv0i0ADq20ZfsDlBgD8ISWtZdTA9/kAFet9WjwCw+v4f2neqjZf6WW8TpzGUJjR449hWh2dIpB+wPMHDw==" length="3924405"
+            />
+        </item>
+
+        <item>
             <title>0.7.5</title>
             <pubDate>Wed, 19 Jul 2023 23:52:29 +0800</pubDate>
             <sparkle:version>1T75Y</sparkle:version>
