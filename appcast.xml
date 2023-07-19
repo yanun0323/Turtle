@@ -14,8 +14,7 @@
             <sparkle:tags><sparkle:criticalUpdate></sparkle:criticalUpdate></sparkle:tags>
             <enclosure
                 url="https://raw.githubusercontent.com/yanun0323/Turtle/main/Turtle_0.7.4.zip" type="application/octet-stream"
-                sparkle:edSignature="ug+hXg143FEfnz5dx22tHxxX/bEzqs4dkn8q2Mo33JSaPY3PsRA3m7zKT1hMA1DfOdbqJZmyMn3ZYLsF/b6fCA==" length="3921461"
-            />
+                sparkle:edSignature="i4nx7ve5QmKGrRZpl0Zui33fn49Swx3INV6ym9wwagUsbrew9q/lYyQlApLl32l/kYooF0mvAd7UgDYQHpd2CA==" length="3370775"            />
         </item>
     </channel>
 </rss>
