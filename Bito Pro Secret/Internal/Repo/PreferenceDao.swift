@@ -81,7 +81,7 @@ extension PreferenceDao where Self: PreferenceRepository {
 }
 
 extension UserDefaults {
-    static let application = UserDefaults(suiteName: "bito.turtle.yanunyang.com")!
+    static let application = UserDefaults(suiteName: "bitopro.turtle.yanunyang.com")!
     
     @UserDefault(key: "AccentColor", .application)
     static var accentColor: Color?
