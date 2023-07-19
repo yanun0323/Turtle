@@ -20,7 +20,6 @@ struct Info: View {
         "0.6.7\n更新 Open Search Link\n新增連結按鈕點選複製token功能",
         "0.6.6\n新增下載 Loading 頁",
         "0.6.5\n更新K8s Prod Token",
-        "0.6.5\n更新K8s Prod Token",
         "0.6.4\nEKS搬移更新\n新增對連結按右鍵可以拷貝連結\n增加視窗高度",
         "0.6.3\n修正MySQL DB 帳密不同",
         "0.6.3\n修正有時要按兩下才複製的BUG\n更新 MySQL DB HOST\n新增 K8S EKS",
