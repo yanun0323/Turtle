@@ -6,9 +6,7 @@ struct AppState {
     
     public let pubAccenctColor = PassthroughSubject<Color, Never>()
     public let pubUserButtonStore = CurrentValueSubject<[UserButton], Never>([])
-    public let pubTransferingCoredata = PassthroughSubject<Bool, Never>()
     public let pubPopupText = PassthroughSubject<String?, Never>()
-    public let pubNewVersionFileInfo = PassthroughSubject<FileInfo?, Never>()
     public let pubOpenMenubarAppTrigger = PassthroughSubject<Bool, Never>()
     public let pubFocus = PassthroughSubject<Bool, Never>()
     public let pubQuickSwitch = PassthroughSubject<Bool, Never>()
@@ -29,5 +27,4 @@ enum PopupPanelOption {
     case createButton
     case editButton(buttonID: Int64)
     case deleteButton(buttonID: Int64)
-    case pushTransferCoredata
 }

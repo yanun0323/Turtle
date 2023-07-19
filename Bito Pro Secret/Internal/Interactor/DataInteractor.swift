@@ -59,22 +59,4 @@ extension DataInteractor {
             try repo.deleteUserButton(id)
         }
     }
-    
-    func transferCoredataToSql(_ context: NSManagedObjectContext) {
-        System.doCatch("transfer core data to sql") {
-            let query: NSFetchRequest<ButtonData> = .init(entityName: "ButtonData")
-            let data = try context.fetch(query)
-            print("ButtonData.count: \(data.count)")
-            var news: [UserButton] = []
-            try repo.tx {
-                let lastOrder = try repo.getLastButtonStoreOrder()
-                for d in data {
-                    var b = UserButton(d)
-                    b.order += lastOrder
-                    news.append(b)
-                    _ = try repo.createUserButton(b)
-                }
-            }
-        }
-    }
 }

@@ -12,21 +12,9 @@ struct SystemInteractor {
 }
 
 extension SystemInteractor {
-    func pushTransferCoredata(_ v: Bool) {
-        System.async {
-            appstate.pubTransferingCoredata.send(v)
-        }
-    }
-    
     func pushPopupText(_ v: String?) {
         System.async {
             appstate.pubPopupText.send(v)
-        }
-    }
-    
-    func pushNewVersionFileInfo(_ v: FileInfo) {
-        System.async {
-            appstate.pubNewVersionFileInfo.send(v)
         }
     }
     

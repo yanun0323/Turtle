@@ -6,7 +6,16 @@
       "location" : "https://github.com/yanun0323/Ditto",
       "state" : {
         "branch" : "master",
-        "revision" : "5d1f72c22290696fba46c9a8306d799e8c0fd5fe"
+        "revision" : "c8bf6ac7e2ca0c9313d08f495d374a432a4ebc5e"
+      }
+    },
+    {
+      "identity" : "sparkle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sparkle-project/Sparkle",
+      "state" : {
+        "revision" : "87e4fcbac39912f9cdb9a9acf205cad60e1ca3bc",
+        "version" : "2.4.2"
       }
     },
     {

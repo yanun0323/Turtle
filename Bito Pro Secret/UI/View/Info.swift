@@ -11,6 +11,8 @@ import Ditto
 struct Info: View {
     @Environment(\.openURL) private var openURL
     private let info: [String] = [
+        "0.7.4\n新功能：檢查新版本\n更新 MySQL Domain",
+        "0.7.3\n移除CoreData底層資料庫",
         "0.7.2\n修正設定無法即時更改問題\n更新UI",
         "0.7.1\n修正撈取舊資料錯誤\n新增刪除按鈕確認",
         "0.7.0\n更新新增/修改按鈕介面\n修正新增/修改按鈕會導致APP凍結的問題\n新增連結按鈕同時拷貝字串\n底層資料庫轉換為純SQLite\n更新時間轉換工具",
@@ -51,6 +53,15 @@ struct Info: View {
             Text("目前版本 \(Config.VERSION)")
                 .fontWeight(.medium)
                 .font(.title3)
+            
+            Button(width: 150, height: 23, color: .background, radius: 7) {
+                Updater.checkForUpdate()
+            } content: {
+                Text("檢查新版本")
+                    .foregroundLinearGradient([.blue, .glue])
+                    .foregroundColor(.transparent)
+            }
+            .shadow(color: .section, radius: 3)
                 
             scrollView {
                 VStack(alignment: .leading, spacing: 10) {

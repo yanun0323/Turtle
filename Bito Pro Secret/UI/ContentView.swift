@@ -1,16 +1,8 @@
-//
-//  ContentView.swift
-//  Bito Pro Secret
-//
-//  Created by YanunYang on 2022/7/12.
-//
-
 import SwiftUI
 import Ditto
 
 // MARK: Main
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var context
     @Environment(\.injected) private var container
     @Environment(\.openURL) private var openURL
     
@@ -22,7 +14,6 @@ struct ContentView: View {
     @State private var popupText: String = ""
     @State private var showPopup: Bool = false
     @State private var tranferCoredata: Bool = false
-    @State private var newVersionFileInfo: FileInfo? = nil
     @State private var quickSwitch: Bool = false
     @State private var showWhatsNew: Bool = false
     
@@ -42,14 +33,6 @@ struct ContentView: View {
                 .opacity(popupPanelOption != nil ? 1 : 0)
             drawPopupPanel(popupPanelOption)
                 .opacity(popupPanelOption != nil ? 1 : 0)
-            
-            if shutdowning {
-                LoadingView(title: "下載更新並關閉小烏龜...", shotdown: true)
-            }
-            
-            if tranferCoredata {
-                LoadingView(title: "搬移舊資料中...", shotdown: false)
-            }
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -80,9 +63,7 @@ struct ContentView: View {
                 container.interactor.system.pushPopupText(nil)
             }
         }
-        .onReceive(container.appstate.pubNewVersionFileInfo) { handleNewFileInfo($0) }
         .onReceive(container.appstate.pubPopupPanelOption) { popupPanelOption = $0 }
-        .onReceive(container.appstate.pubTransferingCoredata) { handleRecieveTransferCoredata($0) }
         .onReceive(container.appstate.pubQuickSwitch) { quickSwitch = $0 }
         .background(.background.opacity(0.3))
     }
@@ -177,23 +158,11 @@ struct ContentView: View {
     
     @ViewBuilder
     private func sloganBlock() -> some View {
-        if newVersionFileInfo != nil {
-            Text(newVersionFileInfo!.Description.isEmpty ? "有新版本: \(newVersionFileInfo!.Version)，請點我下載" : "下載新版本: \(newVersionFileInfo!.Version) (\(newVersionFileInfo!.Description))")
-                .underline()
-                .frame(height: 23)
-                .foregroundColor(.blue)
-                .onTapGesture {
-                    withAnimation(.default) {
-                        shutdowning = true
-                    }
-                }
-        } else {
-            Button(width: 150, height: 23) {
-                container.interactor.copyTimestamp()
-            } content: {
-                Text("有些事明天再做就好")
-                    .foregroundColor(.primary50)
-            }
+        Button(width: 150, height: 23) {
+            container.interactor.copyTimestamp()
+        } content: {
+            Text("有些事明天再做就好")
+                .foregroundColor(.primary50)
         }
     }
     
@@ -274,10 +243,6 @@ struct ContentView: View {
                     container.interactor.data.deleteUserButton(bID)
                     container.interactor.data.pushUserButtonList()
                 }
-            case .pushTransferCoredata:
-                popupConfirmPanel("已搬移過舊自訂按鈕資料到此\n確認要再搬移？", confirmTitle: "搬移") {
-                    container.interactor.system.pushTransferCoredata(true)
-                }
             case nil:
                 EmptyView()
         }
@@ -324,45 +289,14 @@ extension ContentView {
         page = tag
     }
     
-    private func checkVersion() {
-        System.async {
-            sleep(1)
-        } main: {
-            let info = VersionManager.Check(Config.VERSION)
-            guard let file = info else { return }
-            if file.Version == Config.VERSION { return }
-            container.interactor.system.pushNewVersionFileInfo(file)
-        }
-    }
-    
     private func handleAppearAction() {
         handleInit()
-        checkVersion()
-        
-        if container.interactor.preference.getTransferedCoredata() { return }
-        container.interactor.system.pushTransferCoredata(true)
     }
     
     private func handleInit() {
         if isInit { return }
         isInit = true
         quickSwitch = container.interactor.preference.getQuickSwitch()
-    }
-    
-    private func handleRecieveTransferCoredata(_ transfered: Bool) {
-        tranferCoredata = transfered
-        if !tranferCoredata { return }
-        System.async {
-            container.interactor.transferCoredataToSQL(context)
-        } main: {}
-    }
-    
-    private func handleNewFileInfo(_ file: FileInfo?) {
-        showWhatsNew = false
-        if file != nil || newVersionFileInfo?.Version != file?.Version {
-            showWhatsNew = true
-        }
-        newVersionFileInfo = file
     }
     
 }

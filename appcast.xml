@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Turtle</title>
+        <item>
+            <title>0.7.4</title>
+            <pubDate>Wed, 19 Jul 2023 18:52:29 +0800</pubDate>
+            <sparkle:version>1T74Y</sparkle:version>
+            <description sparkle:format="plain-text">新功能：檢查新版本
+更新：MySQL Domain
+            </description>
+            <sparkle:shortVersionString>0.7.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:tags><sparkle:criticalUpdate></sparkle:criticalUpdate></sparkle:tags>
+            <enclosure
+                url="https://raw.githubusercontent.com/yanun0323/Turtle/main/Turtle_0.7.4.zip" type="application/octet-stream"
+                sparkle:edSignature="ug+hXg143FEfnz5dx22tHxxX/bEzqs4dkn8q2Mo33JSaPY3PsRA3m7zKT1hMA1DfOdbqJZmyMn3ZYLsF/b6fCA==" length="3921461"
+            />
+        </item>
+    </channel>
+</rss>

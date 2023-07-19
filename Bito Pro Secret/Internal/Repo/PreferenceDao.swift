@@ -81,36 +81,38 @@ extension PreferenceDao where Self: PreferenceRepository {
 }
 
 extension UserDefaults {
-    @UserDefault(key: "AccentColor")
+    static let application = UserDefaults(suiteName: "bito.turtle.yanunyang.com")!
+    
+    @UserDefault(key: "AccentColor", .application)
     static var accentColor: Color?
     
-    @UserDefault(key: "TransferedCoredata")
+    @UserDefault(key: "TransferedCoredata", .application)
     static var transferedCoredata: Bool?
     
-    @UserDefault(key: "CopyTimestampFormat")
+    @UserDefault(key: "CopyTimestampFormat", .application)
     static var copyTimestampFormat: String?
     
-    @UserDefault(key: "QUICK_SWITCH")
+    @UserDefault(key: "QUICK_SWITCH", .application)
     static var quickSwitch: Bool?
     
-    @UserDefault(key: "SETTING_LINK")
+    @UserDefault(key: "SETTING_LINK", .application)
     static var closeAppAfterLink: Bool?
     
-    @UserDefault(key: "SETTING_COPY")
+    @UserDefault(key: "SETTING_COPY", .application)
     static var closeAppAfterCopy: Bool?
     
-    @UserDefault(key: "SETTING_BUTTON_CREATEAR")
+    @UserDefault(key: "SETTING_BUTTON_CREATEAR", .application)
     static var buttonCreater: Bool?
     
-    @UserDefault(key: "SETTING_USE_UNIX")
+    @UserDefault(key: "SETTING_USE_UNIX", .application)
     static var useUnixForCopy: Bool?
     
-    @UserDefault(key: "SETTING_K8S_LINK_COPY_TOKEN")
+    @UserDefault(key: "SETTING_K8S_LINK_COPY_TOKEN", .application)
     static var k8sLinkCopyToken: Bool?
     
-    @UserDefault(key: "SETTING_Deploy_LINK_COPY_TS")
+    @UserDefault(key: "SETTING_Deploy_LINK_COPY_TS", .application)
     static var deployLinkCopyTS: Bool?
     
-    @UserDefault(key: "Theme", defaultValue: 0)
+    @UserDefault(key: "Theme", defaultValue: 0, .application)
     static var appearance: Int?
 }

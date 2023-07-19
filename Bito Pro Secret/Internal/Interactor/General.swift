@@ -2,14 +2,6 @@ import SwiftUI
 import Ditto
 
 extension Interactor {
-    func transferCoredataToSQL(_ context: NSManagedObjectContext) {
-        sleep(2)
-        data.transferCoredataToSql(context)
-        preference.setTransferedCoredata(true)
-        data.pushUserButtonList()
-        system.pushTransferCoredata(false)
-    }
-    
     func copyTimestamp() {
         copy(timestamp())
     }

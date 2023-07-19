@@ -26,7 +26,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     
     public var statusItem: NSStatusItem?
     private var popOver = NSPopover()
-    private let persistenceController = PersistenceController.shared
     private var container = DIContainer(isMock: false)
     private var isAppOpen = false
     
@@ -40,7 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         popOver.contentViewController = NSViewController()
         popOver.contentViewController = NSHostingController(rootView: ContentView()
             .textEditerCommand()
-            .environment(\.managedObjectContext, persistenceController.container.viewContext)
             .environment(\.injected, container)
             .environment(\.popOver, popOver)
             .hotkey(key: .kVK_ANSI_S, keyBase: [KeyBase.command, .option], action: {
@@ -65,6 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     @objc public func togglePopover() {
         if let button = statusItem?.button {
             self.container.interactor.system.pushOpenMenubarAppTrigger(self.isAppOpen)
+            Updater.checkForUpdateSchedule()
             self.popOver.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.maxY)
         }
         

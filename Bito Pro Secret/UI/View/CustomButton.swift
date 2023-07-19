@@ -35,16 +35,6 @@ struct CustomButton: View {
     }
     
     @ViewBuilder
-    private func transferButton() -> some View {
-        Button(width: 50, height: 20, color: .background, radius: 5) {
-            container.interactor.system.pushPopupPanelOption(.pushTransferCoredata)
-        } content: {
-            Image(systemName: "arrow.left.arrow.right.circle")
-                .foregroundColor(.blue)
-        }
-    }
-    
-    @ViewBuilder
     private func createButton() -> some View {
         Button(width: 50, height: 20, color: .background, radius: 5) {
             container.interactor.system.pushPopupPanelOption(.createButton)
