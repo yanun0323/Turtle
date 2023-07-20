@@ -4,49 +4,34 @@
         <title>Turtle</title>
 
         <item>
-            <title>0.7.5a</title>
+            <title>0.8.0a</title>
             <pubDate>Wed, 19 Jul 2023 23:52:29 +0800</pubDate>
-            <sparkle:version>1T75Ya</sparkle:version>
+            <sparkle:version>1T80Ya</sparkle:version>
             <description sparkle:format="plain-text">抓了一些小蟲
             </description>
-            <sparkle:shortVersionString>0.7.5a</sparkle:shortVersionString>
+            <sparkle:shortVersionString>0.8.0a</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:tags><sparkle:criticalUpdate></sparkle:criticalUpdate></sparkle:tags>
             <enclosure
-                url="https://raw.githubusercontent.com/yanun0323/Turtle/main/Turtle_0.7.5a.zip" type="application/octet-stream"
-                sparkle:edSignature="kUWJDqv0i0ADq20ZfsDlBgD8ISWtZdTA9/kAFet9WjwCw+v4f2neqjZf6WW8TpzGUJjR449hWh2dIpB+wPMHDw==" length="3924405"
+                url="https://raw.githubusercontent.com/yanun0323/Turtle/main/Turtle_0.8.0.zip" type="application/octet-stream"
+                sparkle:edSignature="Og1WTgQpec1RmNlYn24KdtoB6fHO8hMYHhbqoACahjDZUZ2SDBAUgaVVDB8ccGrV9L+3vBedwlyLVLXyz1EfDg==" length="3924554"
             />
         </item>
 
         <item>
-            <title>0.7.5</title>
+            <title>0.8.0</title>
             <pubDate>Wed, 19 Jul 2023 23:52:29 +0800</pubDate>
-            <sparkle:version>1T75Y</sparkle:version>
-            <description sparkle:format="plain-text">修復 App Sandbox
+            <sparkle:version>1T80Y</sparkle:version>
+            <description sparkle:format="plain-text">抓了一些小蟲
             </description>
-            <sparkle:shortVersionString>0.7.5</sparkle:shortVersionString>
+            <sparkle:shortVersionString>0.8.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:tags><sparkle:criticalUpdate></sparkle:criticalUpdate></sparkle:tags>
             <enclosure
-                url="https://raw.githubusercontent.com/yanun0323/Turtle/main/Turtle_0.7.5.zip" type="application/octet-stream"
-                sparkle:edSignature="kUWJDqv0i0ADq20ZfsDlBgD8ISWtZdTA9/kAFet9WjwCw+v4f2neqjZf6WW8TpzGUJjR449hWh2dIpB+wPMHDw==" length="3924405"
+                url="https://raw.githubusercontent.com/yanun0323/Turtle/main/Turtle_0.8.0.zip" type="application/octet-stream"
+                sparkle:edSignature="Og1WTgQpec1RmNlYn24KdtoB6fHO8hMYHhbqoACahjDZUZ2SDBAUgaVVDB8ccGrV9L+3vBedwlyLVLXyz1EfDg==" length="3924554"
             />
         </item>
 
-        <item>
-            <title>0.7.4</title>
-            <pubDate>Wed, 19 Jul 2023 18:52:29 +0800</pubDate>
-            <sparkle:version>1T74Y</sparkle:version>
-            <description sparkle:format="plain-text">新功能：檢查新版本
-更新：MySQL Domain
-            </description>
-            <sparkle:shortVersionString>0.7.4</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:tags><sparkle:criticalUpdate></sparkle:criticalUpdate></sparkle:tags>
-            <enclosure
-                url="https://raw.githubusercontent.com/yanun0323/Turtle/main/Turtle_0.7.4a.zip" type="application/octet-stream"
-                sparkle:edSignature="i4nx7ve5QmKGrRZpl0Zui33fn49Swx3INV6ym9wwagUsbrew9q/lYyQlApLl32l/kYooF0mvAd7UgDYQHpd2CA==" length="3370775"
-            />
-        </item>
     </channel>
 </rss>
