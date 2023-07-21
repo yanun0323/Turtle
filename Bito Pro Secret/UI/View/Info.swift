@@ -11,6 +11,7 @@ import Ditto
 struct Info: View {
     @Environment(\.openURL) private var openURL
     private let info: [String] = [
+        "0.8.1\n新功能：新增按鈕類型快捷鍵",
         "0.8.0\n修復 SQLite Path 問題",
         "0.7.5\n修復 App Sandbox 問題",
         "0.7.4\n新功能：檢查新版本\n更新 MySQL Domain",

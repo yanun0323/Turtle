@@ -77,7 +77,7 @@ struct Other: View {
                 Spacer()
             }
         }
-        .onAppear { focus = .unix }
+//        .onAppear { focus = .unix }
     }
     
     @ViewBuilder

@@ -24,7 +24,9 @@ struct ButtonPanel: View {
         }
         .hotkeys([
             Hotkey(keyBase: [], key: .kVK_Return, action: confirm),
-            Hotkey(keyBase: [.command], key: .kVK_Return, action: confirm)
+            Hotkey(keyBase: [.command], key: .kVK_Return, action: confirm),
+            Hotkey(keyBase: [.command], key: .kVK_ANSI_1, action: { inputStyle = .Copy }),
+            Hotkey(keyBase: [.command], key: .kVK_ANSI_2, action: { inputStyle = .Link })
         ])
         .textEditerCommand()
         .onAppear { handleOnAppear() }
@@ -52,6 +54,11 @@ struct ButtonPanel: View {
                     .background(.background)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
             }
+            
+            Text("⌘+1 Copy    ⌘+2 Link")
+                .font(.system(size: 10))
+                .foregroundColor(.primary25)
+            
             HStack {
                 Text("按鈕名稱")
                 TextField("google 首頁", text: $inputName)

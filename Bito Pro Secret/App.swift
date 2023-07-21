@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         if let button = statusItem?.button {
             self.container.interactor.system.pushOpenMenubarAppTrigger(self.isAppOpen)
             Updater.shared.startUpdater()
-            Updater.checkForUpdateSchedule()
+            Updater.checkForUpdateSchedule(8*TimeInterval.hour)
             self.popOver.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.maxY)
         }
         
