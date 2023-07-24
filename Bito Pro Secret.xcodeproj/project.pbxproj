@@ -27,15 +27,12 @@
 		A83E46242A0D2BD400FF19AE /* SystemInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83E46232A0D2BD400FF19AE /* SystemInteractor.swift */; };
 		A83E46292A13919200FF19AE /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83E46282A13919200FF19AE /* General.swift */; };
 		A87D173529C5CD6300D8B331 /* Dev.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87D173429C5CD6300D8B331 /* Dev.swift */; };
-		A884C95928845BE000E30F86 /* ButtonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C95828845BE000E30F86 /* ButtonData.swift */; };
 		A884C95D2884803F00E30F86 /* NSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C95C2884803F00E30F86 /* NSTableView.swift */; };
 		A884C95F2886736100E30F86 /* UserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C95E2886736100E30F86 /* UserButton.swift */; };
 		A884C96128867FCA00E30F86 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C96028867FCA00E30F86 /* Info.swift */; };
-		A884C98528885FE700E30F86 /* ButtonData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A884C98328885FE700E30F86 /* ButtonData.xcdatamodeld */; };
 		A884C987288861DC00E30F86 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C986288861DC00E30F86 /* Setting.swift */; };
 		A888FF212A610E21002DC299 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888FF202A610E21002DC299 /* Secret.swift */; };
 		A888FF232A610F3F002DC299 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888FF222A610F3F002DC299 /* System.swift */; };
-		A8A2C6F3288E75C400D75458 /* WidgetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2C6F2288E75C400D75458 /* WidgetStatus.swift */; };
 		A8A2C6F628900EC800D75458 /* SwiftUIListReorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */; };
 		A8A32D892A687E1200090F1C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D882A687E1200090F1C /* Sparkle */; };
 		A8A32D8B2A687E1500090F1C /* Sworm in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D8A2A687E1500090F1C /* Sworm */; };
@@ -87,16 +84,13 @@
 		A83E46232A0D2BD400FF19AE /* SystemInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInteractor.swift; sourceTree = "<group>"; };
 		A83E46282A13919200FF19AE /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		A87D173429C5CD6300D8B331 /* Dev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dev.swift; sourceTree = "<group>"; };
-		A884C95828845BE000E30F86 /* ButtonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonData.swift; sourceTree = "<group>"; };
 		A884C95C2884803F00E30F86 /* NSTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTableView.swift; sourceTree = "<group>"; };
 		A884C95E2886736100E30F86 /* UserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserButton.swift; sourceTree = "<group>"; };
 		A884C96028867FCA00E30F86 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
-		A884C98428885FE700E30F86 /* ButtonData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ButtonData.xcdatamodel; sourceTree = "<group>"; };
 		A884C986288861DC00E30F86 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		A888FF202A610E21002DC299 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		A888FF222A610F3F002DC299 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		A8A2C6C6288E645B00D75458 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		A8A2C6F2288E75C400D75458 /* WidgetStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetStatus.swift; sourceTree = "<group>"; };
 		A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIListReorder.swift; sourceTree = "<group>"; };
 		A8D32128287D225100216B61 /* Bito Pro Secret.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bito Pro Secret.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D3212B287D225100216B61 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -204,10 +198,7 @@
 		A884C951288452AC00E30F86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A884C98328885FE700E30F86 /* ButtonData.xcdatamodeld */,
-				A884C95828845BE000E30F86 /* ButtonData.swift */,
 				A884C95E2886736100E30F86 /* UserButton.swift */,
-				A8A2C6F2288E75C400D75458 /* WidgetStatus.swift */,
 				A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */,
 				A8111EC429C7A190002A980C /* Set.swift */,
 			);
@@ -396,7 +387,6 @@
 				A8D3214F287D8AB400216B61 /* ButtonCustom.swift in Sources */,
 				A8D3214A287D672C00216B61 /* NSImage.swift in Sources */,
 				A884C95D2884803F00E30F86 /* NSTableView.swift in Sources */,
-				A8A2C6F3288E75C400D75458 /* WidgetStatus.swift in Sources */,
 				A8D3215A287DD9D500216B61 /* Deployment.swift in Sources */,
 				A884C987288861DC00E30F86 /* Setting.swift in Sources */,
 				A83E46162A0CD37F00FF19AE /* DataDao.swift in Sources */,
@@ -405,7 +395,6 @@
 				A83E461C2A0CD3CC00FF19AE /* PreferenceInteractor.swift in Sources */,
 				A8A2C6F628900EC800D75458 /* SwiftUIListReorder.swift in Sources */,
 				A884C96128867FCA00E30F86 /* Info.swift in Sources */,
-				A884C95928845BE000E30F86 /* ButtonData.swift in Sources */,
 				A8111EC329C787C3002A980C /* View.swift in Sources */,
 				A815199D2A0C947300595D6B /* AppState.swift in Sources */,
 				A8D32158287DD7F200216B61 /* TextLink.swift in Sources */,
@@ -418,7 +407,6 @@
 				A8D32152287DBD4300216B61 /* Connecting.swift in Sources */,
 				A8D3215C287DDA2500216B61 /* Other.swift in Sources */,
 				A888FF232A610F3F002DC299 /* System.swift in Sources */,
-				A884C98528885FE700E30F86 /* ButtonData.xcdatamodeld in Sources */,
 				A83E46292A13919200FF19AE /* General.swift in Sources */,
 				A83E46202A0CDC3400FF19AE /* CustomButton.swift in Sources */,
 				A81519962A0B5C8200595D6B /* Value.swift in Sources */,
@@ -567,7 +555,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1T81Y;
+				CURRENT_PROJECT_VERSION = 1T82Y;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Bito Pro Secret/Preview Content\"";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
@@ -583,7 +571,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.8.1;
+				MARKETING_VERSION = 0.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yanunyang.Bito-Pro-Secret";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -602,7 +590,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1T81Y;
+				CURRENT_PROJECT_VERSION = 1T82Y;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Bito Pro Secret/Preview Content\"";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
@@ -618,7 +606,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.8.1;
+				MARKETING_VERSION = 0.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yanunyang.Bito-Pro-Secret";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -693,19 +681,6 @@
 			productName = Ditto;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		A884C98328885FE700E30F86 /* ButtonData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A884C98428885FE700E30F86 /* ButtonData.xcdatamodel */,
-			);
-			currentVersion = A884C98428885FE700E30F86 /* ButtonData.xcdatamodel */;
-			path = ButtonData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A8D32120287D225100216B61 /* Project object */;
 }

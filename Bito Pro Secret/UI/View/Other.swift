@@ -9,7 +9,7 @@ import SwiftUI
 import Ditto
 
 enum FocusField: Hashable {
-    case date, unix, cron
+    case date, string, unix, cron
 }
 
 struct Other: View {
@@ -18,8 +18,9 @@ struct Other: View {
     @FocusState var focus: FocusField?
     
     // MARK: Date Transfer
-    private static let dateFormat: String = "yyyy-MM-dd HH:mm:ss"
-    @State var dateInput: String = Date.now.string(Self.dateFormat)
+    private static let stringInputFormat = "yyyy-MM-dd HH:mm:ss ZZ"
+    private static let tempDateFormat: String = "yyyy-MM-dd HH:mm:ss"
+    @State var stringInput: String = Date.now.string(Self.stringInputFormat)
     @State var unixInput: String = Date.now.unix.description
     
     @State var yearInput: String = Date.now.string("yyyy")
@@ -57,27 +58,12 @@ struct Other: View {
                         }
                     }
                 }
-
-    //                section("WiFi") {
-    //                    HStack(spacing: 20) {
-    //                        ButtonCopy(copy: "PSP-Guest\nGuest@86668968", width: 40)
-    //                        VStack {
-    //                            Text("訪客 Wifi")
-    //                                .frame(width: 180, alignment: .leading)
-    //                            Text("帳號：PSP-Guest")
-    //                                .frame(width: 180, alignment: .leading)
-    //                            Text("密碼：Guest@86668968")
-    //                                .frame(width: 180, alignment: .leading)
-    //                        }
-    //                        .multilineTextAlignment(.leading)
-    //                    }
-    //                }
+                
                 section("時間轉換工具", font: .body, dateTransfer)
                 
                 Spacer()
             }
         }
-//        .onAppear { focus = .unix }
     }
     
     @ViewBuilder
@@ -88,41 +74,34 @@ struct Other: View {
                     HStack(spacing: 10) {
                         let symbolColor: Color = .primary.opacity(0.8)
                         HStack(spacing: 2)  {
-                            dateTextField($yearInput, digit: 4, max: 9999)
+                            dateTextField($yearInput, "2023", digit: 4, max: 9999)
                             Text("-").foregroundColor(symbolColor)
-                            dateTextField($monthInput, max: 12)
+                            dateTextField($monthInput, "03", max: 12)
                             Text("-").foregroundColor(symbolColor)
-                            dateTextField($dayInput, max: 31)
+                            dateTextField($dayInput, "23", max: 31)
                         }
                         HStack(spacing: 2) {
-                            dateTextField($hourInput, max: 24)
+                            dateTextField($hourInput, "09", max: 24)
                             Text(":").foregroundColor(symbolColor)
-                            dateTextField($minuteInput)
+                            dateTextField($minuteInput, "23")
                             Text(":").foregroundColor(symbolColor)
-                            dateTextField($secondInput)
+                            dateTextField($secondInput, "30")
                         }
                     }
-//                    ButtonCopy(name: "複製時間", copy: dateInput, width: 80, height: 25)
                 }
                 .frame(height: 35, alignment: .leading)
                 
                 HStack {
-//                    ButtonPaste(name: "貼上",paste: $unixInput, width: 60, height: 25, image: "arrow.right", preAction: {
-//                        focus = .unix
-//                    }, postAction: {
-//                        unix2Date()
-//                    })
-                    TextField("unix", text: $unixInput)
+                    TextField("1679534610", text: $unixInput)
                         .focused($focus, equals: .unix)
                         .frame(height: textFieldHeight)
                         .padding(.horizontal, 10)
                         .background(Color.background2, ignoresSafeAreaEdges: [])
                         .cornerRadius(7)
-//                    ButtonCopy(name: "複製unix", copy: unixInput, width: 80, height: 25)
                     
                     Button(width: 60, height: 25, colors: [.blue, .glue], radius: 7) {
                         unixInput = Date.now.unix.description
-                        unix2Date()
+                        unix2All()
                     } content: {
                         Text("Now")
                             .font(.system(size: 12))
@@ -131,21 +110,39 @@ struct Other: View {
                     .shadow(radius: 1)
                 }
                 .frame(width: 219, height: 35)
+                
+                
+                HStack {
+                    TextField("2023-03-23 09:23:30 +0800", text: $stringInput)
+                        .focused($focus, equals: .string)
+                        .frame(height: textFieldHeight)
+                        .padding(.horizontal, 10)
+                        .background(Color.background2, ignoresSafeAreaEdges: [])
+                        .cornerRadius(7)
+                }
+                .frame(width: 219, height: 35)
+                
             }
             .textFieldStyle(.plain)
         }
-        .onChange(of: yearInput) { _ in handleDate2Unix() }
-        .onChange(of: monthInput) { _ in handleDate2Unix() }
-        .onChange(of: dayInput) { _ in handleDate2Unix() }
-        .onChange(of: hourInput) { _ in handleDate2Unix() }
-        .onChange(of: minuteInput) { _ in handleDate2Unix() }
-        .onChange(of: secondInput) { _ in handleDate2Unix() }
-        .onChange(of: unixInput) { _ in handleUnix2Date() }
+        .onChange(of: yearInput) { _ in handleDate2All() }
+        .onChange(of: monthInput) { _ in handleDate2All() }
+        .onChange(of: dayInput) { _ in handleDate2All() }
+        .onChange(of: hourInput) { _ in handleDate2All() }
+        .onChange(of: minuteInput) { _ in handleDate2All() }
+        .onChange(of: secondInput) { _ in handleDate2All() }
+        .onChange(of: unixInput) { _ in handleUnix2All() }
+        .onChange(of: stringInput) { _ in handleString2All() }
+        .hotkey(key: .kVK_Return) {
+            handleDate2All()
+            handleUnix2All()
+            handleString2All()
+        }
     }
     
     @ViewBuilder
-    private func dateTextField(_ text: Binding<String>, digit: Int = 2, max: Int = 60) -> some View {
-        TextField("", text: limitation(text, limit: digit, max: max))
+    private func dateTextField(_ text: Binding<String>, _ title: String, digit: Int = 2, max: Int = 60) -> some View {
+        TextField(title, text: limitation(text, limit: digit, max: max))
             .focused($focus, equals: .date)
             .frame(width: CGFloat(digit*8), height: textFieldHeight, alignment: .center)
             .padding(.horizontal, 5)
@@ -154,12 +151,14 @@ struct Other: View {
     }
 }
 
+#if Debug
 struct Bito_Previews: PreviewProvider {
     static var previews: some View {
         Other()
             .frame(size: Config.menubarSize)
     }
 }
+#endif
 
 extension Other {
     func limitation(_ text: Binding<String>, limit: Int, max: Int) -> Binding<String> {
@@ -186,33 +185,36 @@ extension Other {
 
     }
     
-    func handleDate2Unix() {
-        if focus == .unix { return }
+    func handleDate2All() {
+        if focus != .date { return }
         #if DEBUG
         print("date invoke - \(Date.now.unix)")
         #endif
-        date2Unix()
+        date2All()
     }
     
-    func date2Unix() {
-        dateInput = "\(yearInput)-\(monthInput)-\(dayInput) \(hourInput):\(minuteInput):\(secondInput)"
-        guard let date = Date(from: dateInput, Self.dateFormat, .us, .current) else {
-            unixInput = "?"
+    func date2All() {
+        let temp = "\(yearInput)-\(monthInput)-\(dayInput) \(hourInput):\(minuteInput):\(secondInput)"
+        guard let date = Date(from: temp, Self.tempDateFormat, .us, .current) else {
+            unixInput = ""
+            stringInput = ""
             return
         }
         unixInput = date.unix.description
+        stringInput = date.string(Self.stringInputFormat, .us)
     }
     
-    func handleUnix2Date() {
-        if focus != .unix { return }
+    func handleString2All() {
+        if focus != .string { return }
         #if DEBUG
-        print("unix invoke - \(Date.now.unix)")
+        print("string invoke - \(Date.now.unix)")
         #endif
-        unix2Date()
+        string2All()
     }
     
-    func unix2Date() {
-        guard let unix = Int(unixInput) else {
+    func string2All() {
+        guard let d = Date(from: stringInput, Self.stringInputFormat, .us, .current) else {
+            unixInput = ""
             yearInput = ""
             monthInput = ""
             dayInput = ""
@@ -221,8 +223,37 @@ extension Other {
             secondInput = ""
             return
         }
+        
+        unixInput = d.unix.description
+        yearInput = d.string("yyyy")
+        monthInput = d.string("MM")
+        dayInput = d.string("dd")
+        hourInput = d.string("HH")
+        minuteInput = d.string("mm")
+        secondInput = d.string("ss")
+    }
+    
+    func handleUnix2All() {
+        if focus != .unix { return }
+        #if DEBUG
+        print("unix invoke - \(Date.now.unix)")
+        #endif
+        unix2All()
+    }
+    
+    func unix2All() {
+        guard let unix = Int(unixInput) else {
+            yearInput = ""
+            monthInput = ""
+            dayInput = ""
+            hourInput = ""
+            minuteInput = ""
+            secondInput = ""
+            stringInput = ""
+            return
+        }
         let d = Date.init(timeIntervalSince1970: 0).addingTimeInterval(.init(unix))
-        dateInput = d.string(Self.dateFormat, .us, .current)
+        stringInput = d.string(Self.stringInputFormat, .us, .current)
         yearInput = d.string("yyyy")
         monthInput = d.string("MM")
         dayInput = d.string("dd")

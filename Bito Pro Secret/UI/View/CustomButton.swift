@@ -88,9 +88,11 @@ extension CustomButton {
     
 }
 
+#if Debug
 struct CustomButton_Previews: PreviewProvider {
     static var previews: some View {
         CustomButton()
             .frame(size: Config.menubarSize)
     }
 }
+#endif

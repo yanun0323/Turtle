@@ -97,9 +97,11 @@ extension Dev {
     }
 }
 
+#if Debug
 struct ToolView_Previews: PreviewProvider {
     static var previews: some View {
         Dev()
             .frame(size: Config.menubarSize)
     }
 }
+#endif

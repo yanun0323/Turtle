@@ -35,8 +35,10 @@ struct TextLink: View {
     }
 }
 
+#if Debug
 struct TextLink_Previews: PreviewProvider {
     static var previews: some View {
         TextLink(name: "Name", link: "Link")
     }
 }
+#endif

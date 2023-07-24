@@ -39,8 +39,10 @@ struct Feature: View {
     
 }
 
+#if Debug
 struct Feature_Previews: PreviewProvider {
     static var previews: some View {
         Feature()
     }
 }
+#endif

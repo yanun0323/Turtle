@@ -88,9 +88,11 @@ struct Monitor: View {
     }
 }
 
+#if Debug
 struct Monitor_Previews: PreviewProvider {
     static var previews: some View {
         Monitor()
             .frame(size: Config.menubarSize)
     }
 }
+#endif

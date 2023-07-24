@@ -147,9 +147,11 @@ struct Deployment: View {
     }
 }
 
+#if Debug
 struct Deployment_Previews: PreviewProvider {
     static var previews: some View {
         Deployment()
             .frame(size: Config.menubarSize)
     }
 }
+#endif

@@ -235,9 +235,11 @@ extension Setting {
     }
 }
 
+#if Debug
 struct Setting_Previews: PreviewProvider {
     static var previews: some View {
         Setting()
             .frame(size: Config.menubarSize)
     }
 }
+#endif

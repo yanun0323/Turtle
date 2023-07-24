@@ -46,7 +46,9 @@ struct ContentView: View {
         }
         .onReceive(container.appstate.pubFocus) { newValue in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                #if DEBUG
                 print("Change focus \(newValue)")
+                #endif
                 self.focus = true
             }
         }
@@ -301,9 +303,11 @@ extension ContentView {
     
 }
 
+#if Debug
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .frame(size: Config.menubarSize)
     }
 }
+#endif

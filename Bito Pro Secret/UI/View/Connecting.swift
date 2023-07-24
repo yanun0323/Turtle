@@ -138,11 +138,12 @@ extension Connecting {
     }
 }
 
+#if Debug
 struct Connection_Previews: PreviewProvider {
     static var previews: some View {
         Connecting()
             .frame(size: Config.menubarSize)
     }
 }
-
+#endif
 

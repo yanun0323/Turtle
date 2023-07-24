@@ -7,27 +7,6 @@
 
 import Foundation
 
-
-struct UserButtonOld: Hashable, Identifiable {
-    var id: Self { self }
-    
-    var Style: UserButtonStyle = .Copy
-    var Name: String = ""
-    var Content: String = ""
-    var Order: Int32 = 0
-}
-
-extension UserButtonOld {
-    func toUserButton() -> UserButton {
-        return UserButton(
-            style: self.Style,
-            name: self.Name,
-            content: self.Content,
-            order: Int(self.Order)
-        )
-    }
-}
-
 enum UserButtonStyle: String, CaseIterable, Identifiable, Equatable {
     var id: Self { self }
     
@@ -49,15 +28,6 @@ struct UserButton {
         self.name = name
         self.content = content
         self.order = order
-    }
-    
-    init(_ data: ButtonData){
-        self.init(
-            style: data.Style,
-            name: data.name,
-            content: data.content,
-            order: Int(data.order)
-        )
     }
 }
 

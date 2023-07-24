@@ -183,8 +183,10 @@ extension ButtonPanel {
     
 }
 
+#if Debug
 struct ButtonPanel_Previews: PreviewProvider {
     static var previews: some View {
         ButtonPanel()
     }
 }
+#endif

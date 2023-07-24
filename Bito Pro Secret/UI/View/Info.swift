@@ -11,6 +11,7 @@ import Ditto
 struct Info: View {
     @Environment(\.openURL) private var openURL
     private let info: [String] = [
+        "0.8.2\n時間轉換工具更新",
         "0.8.1\n新功能：新增按鈕類型快捷鍵",
         "0.8.0\n修復 SQLite Path 問題",
         "0.7.5\n修復 App Sandbox 問題",
@@ -81,9 +82,11 @@ struct Info: View {
     }
 }
 
+#if Debug
 struct Info_Previews: PreviewProvider {
     static var previews: some View {
         Info()
             .frame(size: Config.menubarSize)
     }
 }
+#endif
