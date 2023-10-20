@@ -12,6 +12,7 @@ struct Interactor {
     let data: DataInteractor
     let system: SystemInteractor
     let preference: PreferenceInteractor
+    let updater: UpdaterInteractor
     
     init(appstate: AppState, isMock: Bool) {
         let repo: Repository = Dao()
@@ -19,6 +20,7 @@ struct Interactor {
         self.data = DataInteractor(appstate: appstate, repo: repo)
         self.system = SystemInteractor(appstate: appstate, repo: repo)
         self.preference = PreferenceInteractor(appstate: appstate, repo: repo)
+        self.updater = UpdaterInteractor(appstate: appstate, repo: repo)
         
         setup()
     }

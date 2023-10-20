@@ -16,4 +16,5 @@ extension Color {
     static let dark = Color("Dark")
     static let clean = Color.black.opacity(0.0101)
     static let glue = Color(hex: "#0af")
+    static let main: [Color] = [.blue, .glue]
 }

@@ -37,6 +37,8 @@
 		A8A32D892A687E1200090F1C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D882A687E1200090F1C /* Sparkle */; };
 		A8A32D8B2A687E1500090F1C /* Sworm in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D8A2A687E1500090F1C /* Sworm */; };
 		A8A32D8D2A687E1700090F1C /* Ditto in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D8C2A687E1700090F1C /* Ditto */; };
+		A8AECF892ABAEDDD00D15D92 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AECF882ABAEDDD00D15D92 /* CGFloat.swift */; };
+		A8AECF8B2ABAF2BD00D15D92 /* UpdaterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AECF8A2ABAF2BD00D15D92 /* UpdaterInteractor.swift */; };
 		A8D3212C287D225100216B61 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D3212B287D225100216B61 /* App.swift */; };
 		A8D3212E287D225100216B61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D3212D287D225100216B61 /* ContentView.swift */; };
 		A8D32130287D225400216B61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8D3212F287D225400216B61 /* Assets.xcassets */; };
@@ -92,6 +94,8 @@
 		A888FF222A610F3F002DC299 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		A8A2C6C6288E645B00D75458 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIListReorder.swift; sourceTree = "<group>"; };
+		A8AECF882ABAEDDD00D15D92 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		A8AECF8A2ABAF2BD00D15D92 /* UpdaterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterInteractor.swift; sourceTree = "<group>"; };
 		A8D32128287D225100216B61 /* Bito Pro Secret.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bito Pro Secret.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D3212B287D225100216B61 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		A8D3212D287D225100216B61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 			children = (
 				A83E46282A13919200FF19AE /* General.swift */,
 				A83E46232A0D2BD400FF19AE /* SystemInteractor.swift */,
+				A8AECF8A2ABAF2BD00D15D92 /* UpdaterInteractor.swift */,
 				A83E46192A0CD3C200FF19AE /* DataInteractor.swift */,
 				A83E461B2A0CD3CC00FF19AE /* PreferenceInteractor.swift */,
 			);
@@ -281,6 +286,7 @@
 				A884C95C2884803F00E30F86 /* NSTableView.swift */,
 				A8111EC229C787C3002A980C /* View.swift */,
 				A836DEBF2A2E0F3F002DF658 /* NSAppearance.swift */,
+				A8AECF882ABAEDDD00D15D92 /* CGFloat.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -396,8 +402,10 @@
 				A8A2C6F628900EC800D75458 /* SwiftUIListReorder.swift in Sources */,
 				A884C96128867FCA00E30F86 /* Info.swift in Sources */,
 				A8111EC329C787C3002A980C /* View.swift in Sources */,
+				A8AECF892ABAEDDD00D15D92 /* CGFloat.swift in Sources */,
 				A815199D2A0C947300595D6B /* AppState.swift in Sources */,
 				A8D32158287DD7F200216B61 /* TextLink.swift in Sources */,
+				A8AECF8B2ABAF2BD00D15D92 /* UpdaterInteractor.swift in Sources */,
 				A83E461A2A0CD3C200FF19AE /* DataInteractor.swift in Sources */,
 				A80498B028AAB83D0016146A /* Monitor.swift in Sources */,
 				A81519982A0B88D400595D6B /* Feature.swift in Sources */,
@@ -555,7 +563,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1T82Y;
+				CURRENT_PROJECT_VERSION = 1T83Y;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Bito Pro Secret/Preview Content\"";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
@@ -571,7 +579,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.8.2;
+				MARKETING_VERSION = 0.8.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yanunyang.Bito-Pro-Secret";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -590,7 +598,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1T82Y;
+				CURRENT_PROJECT_VERSION = 1T83Y;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Bito Pro Secret/Preview Content\"";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
@@ -606,7 +614,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.8.2;
+				MARKETING_VERSION = 0.8.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yanunyang.Bito-Pro-Secret";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

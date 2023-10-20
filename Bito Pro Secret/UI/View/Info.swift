@@ -9,9 +9,11 @@ import SwiftUI
 import Ditto
 
 struct Info: View {
+    @Environment(\.injected) private var container
     @Environment(\.openURL) private var openURL
     private let info: [String] = [
-        "0.8.2\n時間轉換工具更新",
+        "0.8.3\n增加 mermaid 工具",
+        "0.8.2\n更新時間轉換工具",
         "0.8.1\n新功能：新增按鈕類型快捷鍵",
         "0.8.0\n修復 SQLite Path 問題",
         "0.7.5\n修復 App Sandbox 問題",
@@ -58,10 +60,9 @@ struct Info: View {
                 .font(.title3)
             
             Button(width: 150, height: 23, color: .background, radius: 7) {
-                Updater.checkForUpdate()
+                container.interactor.updater.forceCheckForUpdates()
             } content: {
                 Text("檢查新版本")
-                    .foregroundLinearGradient([.blue, .glue])
                     .foregroundColor(.transparent)
             }
             .shadow(color: .section, radius: 3)

@@ -13,6 +13,8 @@ enum FocusField: Hashable {
 }
 
 struct Other: View {
+    @Environment(\.injected) private var container
+    @Environment(\.openURL) private var openURL
     private let block: CGFloat = 10
     private let textFieldHeight: CGFloat = 25
     @FocusState var focus: FocusField?
@@ -35,14 +37,8 @@ struct Other: View {
             VStack(spacing: 10) {
                 section("Backend") {
                     HStack(spacing: 30) {
-                        VStack(spacing: 10) {
-                            TextLinkBito(name: "Clickup", link: Config.Bito.BackendClickup, image: "hand.thumbsup")
-                            TextLinkBito(name: "歡迎光臨", link: Config.Bito.Welcome, image: "video")
-                        }
-                        VStack(spacing: 10) {
-                            TextLinkBito(name: "大機密", link: Config.Bito.ClickupSecret, image: "rectangle.and.pencil.and.ellipsis.rtl")
-                            TextLinkBito(name: "大秘寶", link: Config.Bito.ClickupTreasure, image: "shippingbox")
-                        }
+                        TextLinkBito(name: "大機密", link: Config.Bito.ClickupSecret, image: "rectangle.and.pencil.and.ellipsis.rtl")
+                        TextLinkBito(name: "大秘寶", link: Config.Bito.ClickupTreasure, image: "shippingbox")
                     }
                 }
                 
@@ -60,6 +56,8 @@ struct Other: View {
                 }
                 
                 section("時間轉換工具", font: .body, dateTransfer)
+                
+                section("Mermaid", mermaidBlock)
                 
                 Spacer()
             }
@@ -149,6 +147,30 @@ struct Other: View {
             .background(Color.background2, ignoresSafeAreaEdges: [])
             .cornerRadius(7)
     }
+    
+    @ViewBuilder
+    private func mermaidBlock() -> some View {
+        HStack(spacing: 30) {
+            Button(width: 100, height: .buttonHeight, colors: Color.main, radius: .buttonRadius) {
+                guard let url = URL(string: "https://mermaid-js.github.io/mermaid-live-editor/") else { return }
+                openURL(url)
+            } content: {
+                Text("Mermaid")
+                    .foregroundColor(.white)
+            }
+            .shadow(radius: .shadow)
+            
+            Button(width: 180, height: .buttonHeight, color: .background, radius: .buttonRadius) {
+                HandleMermaidMarkdown()
+            } content: {
+                Text("替換拷貝的 Mermaid 背景")
+                    .foregroundColor(.primary)
+                
+            }
+            .shadow(radius: .shadow)
+        }
+
+    }
 }
 
 #if Debug
@@ -156,6 +178,7 @@ struct Bito_Previews: PreviewProvider {
     static var previews: some View {
         Other()
             .frame(size: Config.menubarSize)
+            .inject(.default)
     }
 }
 #endif
@@ -260,6 +283,12 @@ extension Other {
         hourInput = d.string("HH")
         minuteInput = d.string("mm")
         secondInput = d.string("ss")
+    }
+    
+    func HandleMermaidMarkdown() {
+        guard let read = NSPasteboard.general.string(forType: .string) else { return }
+        let replaced = read.replacingOccurrences(of: "type=png", with: "type=jpg")
+        container.interactor.copy(replaced)
     }
 }
 
