@@ -29,4 +29,5 @@ enum PopupPanelOption {
     case createButton
     case editButton(buttonID: Int64)
     case deleteButton(buttonID: Int64)
+    case resetSecret
 }

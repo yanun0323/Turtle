@@ -33,6 +33,7 @@
 		A884C96128867FCA00E30F86 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C96028867FCA00E30F86 /* Info.swift */; };
 		A884C987288861DC00E30F86 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C986288861DC00E30F86 /* Setting.swift */; };
 		A88600892AFD4BAD00BB43CE /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88600882AFD4BAD00BB43CE /* Secret.swift */; };
+		A886008B2AFD555A00BB43CE /* JSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A886008A2AFD555A00BB43CE /* JSONEncoder.swift */; };
 		A888FF232A610F3F002DC299 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888FF222A610F3F002DC299 /* System.swift */; };
 		A8A2C6F628900EC800D75458 /* SwiftUIListReorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */; };
 		A8A32D892A687E1200090F1C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D882A687E1200090F1C /* Sparkle */; };
@@ -93,6 +94,7 @@
 		A884C96028867FCA00E30F86 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		A884C986288861DC00E30F86 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		A88600882AFD4BAD00BB43CE /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		A886008A2AFD555A00BB43CE /* JSONEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoder.swift; sourceTree = "<group>"; };
 		A888FF222A610F3F002DC299 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		A8A2C6C6288E645B00D75458 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIListReorder.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				A8D32149287D672C00216B61 /* NSImage.swift */,
 				A8D3214C287D7FBC00216B61 /* Color.swift */,
 				A884C95C2884803F00E30F86 /* NSTableView.swift */,
+				A886008A2AFD555A00BB43CE /* JSONEncoder.swift */,
 				A8111EC229C787C3002A980C /* View.swift */,
 				A836DEBF2A2E0F3F002DF658 /* ColorScheme.swift */,
 				A8AECF882ABAEDDD00D15D92 /* CGFloat.swift */,
@@ -420,6 +423,7 @@
 				A8D3215C287DDA2500216B61 /* Other.swift in Sources */,
 				A888FF232A610F3F002DC299 /* System.swift in Sources */,
 				A83E46292A13919200FF19AE /* General.swift in Sources */,
+				A886008B2AFD555A00BB43CE /* JSONEncoder.swift in Sources */,
 				A83E46202A0CDC3400FF19AE /* CustomButton.swift in Sources */,
 				A81519962A0B5C8200595D6B /* Value.swift in Sources */,
 				A8D3212C287D225100216B61 /* App.swift in Sources */,

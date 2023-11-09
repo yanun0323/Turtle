@@ -4,6 +4,24 @@ import SwiftUI
 struct Secret: Codable {
     var bito: Bito
     var custom: [Custom]?
+    
+    func json() -> Data? {
+        return try? JSONEncoder.default.encode(self)
+    }
+    
+    func string() -> String? {
+        guard let data = json() else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+}
+
+extension Secret {
+    init?(_ data: Data) {
+        guard let sec = try? JSONDecoder().decode(Secret.self, from: data) else {
+            return nil
+        }
+        self = sec
+    }
 }
 
 extension Secret {

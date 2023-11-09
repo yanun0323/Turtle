@@ -16,7 +16,6 @@ struct Setting: View {
     @State private var useUnixForCopy: Bool = false
     @State private var quickSwitch: Bool = false
     @State private var secret: Secret = .default
-    @State private var exportJsonSucced: Bool? = nil
     @State private var importJsonSucced: Bool? = nil
     
     var body: some View {
@@ -32,6 +31,8 @@ struct Setting: View {
                     
                     jsonBlock()
                     
+                    dangerBlock()
+                    
                     Spacer()
                     
                 }
@@ -43,14 +44,6 @@ struct Setting: View {
         .onChange(of: closeAppAfterLink) { container.interactor.preference.setCloseAppAfterLink($0) }
         .onChange(of: useUnixForCopy) { container.interactor.preference.setUseUnixForCopy($0) }
         .onChange(of: quickSwitch) { container.interactor.preference.setQuickSwitch($0) }
-        .onChange(of: exportJsonSucced) {
-            if $0 == nil { return }
-            System.async {
-                sleep(3)
-            } main: {
-                exportJsonSucced = nil
-            }
-        }
         .onChange(of: importJsonSucced) {
             if $0 == nil { return }
             System.async {
@@ -74,25 +67,26 @@ struct Setting: View {
     }
     
     @ViewBuilder
+    private func dangerBlock() -> some View {
+        section("危險區域", font: .body) {
+            Button(width: 150, height: 25, color: .red, radius: 7) {
+                container.interactor.system.pushPopupPanelOption(.resetSecret)
+            } content: {
+                Text("重設所有按鈕內容")
+                    .foregroundStyle(.white)
+            }
+        }
+    }
+    
+    @ViewBuilder
     private func jsonBlock() -> some View {
-        section("JSON", spacing: 5) {
+        section("JSON", spacing: 10) {
             Button(width: 150, height: 25, colors: [.blue, .glue], radius: 7) {
                 handleExportJson()
             } content: {
                 Label("匯出 JSON", systemImage: "square.and.arrow.up")
                     .foregroundStyle(.white)
             }
-            
-            ZStack {
-                Label("匯出 JSON 成功", systemImage: "checkmark.circle.fill")
-                    .foregroundStyle(.green)
-                    .opacity(exportJsonSucced == true ? 1 : 0)
-                Label("匯出 JSON 失敗", systemImage: "multiply.circle.fill")
-                    .foregroundStyle(.red)
-                    .opacity(exportJsonSucced == false ? 1 : 0)
-            }
-            .font(.caption)
-            .animation(.easeInOut, value: exportJsonSucced)
             
             Button(width: 150, height: 25, color: .background, radius: 7) {
                 handleImportJson()
@@ -128,7 +122,8 @@ struct Setting: View {
             }
             Spacer()
         }
-        .padding(.vertical, 10)
+        .padding(.top, 5)
+        .padding(.bottom)
     }
     
     @ViewBuilder
@@ -297,16 +292,47 @@ extension Setting {
         closeAppAfterLink = container.interactor.preference.getCloseAppAfterLink()
         useUnixForCopy = container.interactor.preference.getUseUnixForCopy()
         quickSwitch = container.interactor.preference.getQuickSwitch()
-        exportJsonSucced = nil
         importJsonSucced = nil
     }
     
     func handleExportJson() {
-        exportJsonSucced = true
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = "turtle_secret"
+        panel.allowedContentTypes = [.json]
+        panel.showsTagField = false
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+        
+        print(url.absoluteString)
+        
+        guard let data = secret.json() else { return }
+        System.doCatch("write data into file") {
+            try data.write(to: url)
+        }
+        
     }
     
     func handleImportJson() {
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = false
+        panel.canChooseFiles = true
+        panel.allowedContentTypes = [.json]
+        guard panel.runModal() == .OK, let url = panel.url else {
+            importJsonSucced = false
+            return
+        }
+        guard let file = try? FileHandle(forReadingFrom: url) else {
+            importJsonSucced = false
+            return
+        }
+        defer { try? file.close() }
+        guard let sec = Secret(file.availableData) else {
+            importJsonSucced = false
+            return
+        }
         
+        container.interactor.preference.setSecret(sec)
+        importJsonSucced = true
     }
 }
 

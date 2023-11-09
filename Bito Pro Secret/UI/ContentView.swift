@@ -23,7 +23,7 @@ struct ContentView: View {
     
     @State private var isInit: Bool = false
     @State private var popupPanelOption: PopupPanelOption? = nil
-    var showPopupSecond: UInt32 = 1
+    var showPopupSecond: UInt32 = 3
     
     @State var colorScheme: ColorScheme? = nil
     
@@ -65,8 +65,10 @@ struct ContentView: View {
             if v.isNil {
                 return
             }
-            DispatchQueue.global(qos: .background).async {
+            
+            System.async {
                 sleep(showPopupSecond)
+            } main: {
                 container.interactor.system.pushPopupText(nil)
             }
         }
@@ -248,17 +250,22 @@ struct ContentView: View {
             case let .editButton(buttonID: bID):
                 ButtonPanel(inputID: bID)
             case let .deleteButton(buttonID: bID):
-                popupConfirmPanel("確認要刪除按鈕嗎？", delete: true) {
+                popupConfirmPanel("確認要刪除按鈕嗎？", delete: "刪除") {
                     container.interactor.data.deleteUserButton(bID)
                     container.interactor.data.pushUserButtonList()
                 }
+        case .resetSecret:
+            popupConfirmPanel("確認要重設所有按鈕內容嗎？", delete: "重設") {
+                container.interactor.preference.setSecret(.default)
+                container.interactor.system.pushPopupText("已重設所有按鈕內容")
+            }
             case nil:
                 EmptyView()
         }
     }
     
     @ViewBuilder
-    private func popupConfirmPanel(_ title: String, delete: Bool = false, confirmTitle: String? = nil, confirm: @escaping () -> Void, cancel: @escaping () -> Void = {}) -> some View {
+    private func popupConfirmPanel(_ title: String, delete: String? = nil, confirmTitle: String? = nil, confirm: @escaping () -> Void, cancel: @escaping () -> Void = {}) -> some View {
         VStack(spacing: 20) {
             let size = CGSize(width: 100, height: 25)
             Text(title)
@@ -273,11 +280,11 @@ struct ContentView: View {
                         .foregroundColor(.gray)
                 }
                 Spacer()
-                Button(width: size.width, height: size.height, color: delete ? .red: .blue, radius: 7) {
+                Button(width: size.width, height: size.height, color: delete != nil ? .red: .blue, radius: 7) {
                     confirm()
                     self.popupPanelOption = nil
                 } content: {
-                    Text(confirmTitle ?? (delete ? "刪除" : "確認"))
+                    Text(confirmTitle ?? (delete ?? "確認"))
                         .foregroundColor(.white)
                 }
                 Spacer()
