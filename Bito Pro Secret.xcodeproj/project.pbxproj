@@ -32,7 +32,7 @@
 		A884C95F2886736100E30F86 /* UserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C95E2886736100E30F86 /* UserButton.swift */; };
 		A884C96128867FCA00E30F86 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C96028867FCA00E30F86 /* Info.swift */; };
 		A884C987288861DC00E30F86 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C986288861DC00E30F86 /* Setting.swift */; };
-		A88600872AFD1D9F00BB43CE /* Secret_Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88600862AFD1D9F00BB43CE /* Secret_Value.swift */; };
+		A88600892AFD4BAD00BB43CE /* Secret_Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88600882AFD4BAD00BB43CE /* Secret_Value.swift */; };
 		A888FF232A610F3F002DC299 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888FF222A610F3F002DC299 /* System.swift */; };
 		A8A2C6F628900EC800D75458 /* SwiftUIListReorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */; };
 		A8A32D892A687E1200090F1C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D882A687E1200090F1C /* Sparkle */; };
@@ -92,7 +92,7 @@
 		A884C95E2886736100E30F86 /* UserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserButton.swift; sourceTree = "<group>"; };
 		A884C96028867FCA00E30F86 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		A884C986288861DC00E30F86 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
-		A88600862AFD1D9F00BB43CE /* Secret_Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret_Value.swift; sourceTree = "<group>"; };
+		A88600882AFD4BAD00BB43CE /* Secret_Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret_Value.swift; sourceTree = "<group>"; };
 		A888FF222A610F3F002DC299 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		A8A2C6C6288E645B00D75458 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIListReorder.swift; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 			children = (
 				A888FF222A610F3F002DC299 /* System.swift */,
 				A83103812AE8DE020016A33D /* Secret.swift */,
-				A88600862AFD1D9F00BB43CE /* Secret_Value.swift */,
+				A88600882AFD4BAD00BB43CE /* Secret_Value.swift */,
 				A8D32142287D52D600216B61 /* Secret.swift.backup */,
 			);
 			path = Config;
@@ -398,7 +398,7 @@
 				A884C95D2884803F00E30F86 /* NSTableView.swift in Sources */,
 				A8D3215A287DD9D500216B61 /* Deployment.swift in Sources */,
 				A884C987288861DC00E30F86 /* Setting.swift in Sources */,
-				A88600872AFD1D9F00BB43CE /* Secret_Value.swift in Sources */,
+				A88600892AFD4BAD00BB43CE /* Secret_Value.swift in Sources */,
 				A83E46162A0CD37F00FF19AE /* DataDao.swift in Sources */,
 				A83103822AE8DE020016A33D /* Secret.swift in Sources */,
 				A83E46222A0D262200FF19AE /* ButtonPanel.swift in Sources */,

@@ -91,39 +91,39 @@ extension PreferenceDao where Self: PreferenceRepository {
 extension UserDefaults {
     static let application = UserDefaults(suiteName: "bitopro.turtle.yanunyang.com")!
     
-    @UserDefault(key: "AccentColor", .application)
+    @UserDefaultState(key: "AccentColor", .application)
     static var accentColor: Color?
     
-    @UserDefault(key: "TransferedCoredata", .application)
+    @UserDefaultState(key: "TransferedCoredata", .application)
     static var transferedCoredata: Bool?
     
-    @UserDefault(key: "CopyTimestampFormat", .application)
+    @UserDefaultState(key: "CopyTimestampFormat", .application)
     static var copyTimestampFormat: String?
     
-    @UserDefault(key: "QUICK_SWITCH", .application)
+    @UserDefaultState(key: "QUICK_SWITCH", .application)
     static var quickSwitch: Bool?
     
-    @UserDefault(key: "SETTING_LINK", .application)
+    @UserDefaultState(key: "SETTING_LINK", .application)
     static var closeAppAfterLink: Bool?
     
-    @UserDefault(key: "SETTING_COPY", .application)
+    @UserDefaultState(key: "SETTING_COPY", .application)
     static var closeAppAfterCopy: Bool?
     
-    @UserDefault(key: "SETTING_BUTTON_CREATEAR", .application)
+    @UserDefaultState(key: "SETTING_BUTTON_CREATEAR", .application)
     static var buttonCreater: Bool?
     
-    @UserDefault(key: "SETTING_USE_UNIX", .application)
+    @UserDefaultState(key: "SETTING_USE_UNIX", .application)
     static var useUnixForCopy: Bool?
     
-    @UserDefault(key: "SETTING_K8S_LINK_COPY_TOKEN", .application)
+    @UserDefaultState(key: "SETTING_K8S_LINK_COPY_TOKEN", .application)
     static var k8sLinkCopyToken: Bool?
     
-    @UserDefault(key: "SETTING_Deploy_LINK_COPY_TS", .application)
+    @UserDefaultState(key: "SETTING_Deploy_LINK_COPY_TS", .application)
     static var deployLinkCopyTS: Bool?
     
-    @UserDefault(key: "Theme", defaultValue: 0, .application)
+    @UserDefaultState(key: "Theme", defaultValue: 0, .application)
     static var appearance: Int?
     
-    @UserDefault(key: "USER_SECRET", .application)
+    @UserDefaultState(key: "USER_SECRET", .application)
     static var secret: String?
 }
