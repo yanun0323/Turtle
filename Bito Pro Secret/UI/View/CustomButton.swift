@@ -28,7 +28,7 @@ struct CustomButton: View {
             Block(width: 50, height: 20)
             Spacer()
             Text("對按鈕按右鍵可以進行修改")
-                .foregroundColor(.primary50)
+                .foregroundColor(.primaryHalf)
             Spacer()
             createButton()
         }
@@ -79,20 +79,16 @@ struct CustomButton: View {
 }
 
 extension CustomButton {
-    
     private func handleOnAppear() {
         if buttons.isEmpty {
             container.interactor.data.pushUserButtonList()
         }
     }
-    
 }
 
-#if Debug
-struct CustomButton_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomButton()
-            .frame(size: Config.menubarSize)
-    }
+#Preview {
+    CustomButton()
+        .frame(size: Config.menubarSize)
+        .padding()
+        .inject(.default)
 }
-#endif

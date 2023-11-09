@@ -9,9 +9,11 @@ import SwiftUI
 import Ditto
 
 struct Deployment: View {
-    @State var hoverDeployment = false
-    @State var hoverConfigmap = false
-    @State var hints: [String] = []
+    @Environment(\.injected) private var container
+    @State private var deployment: Secret.Bito.Deployment = Secret.default.bito.deployment
+    @State private var hoverDeployment = false
+    @State private var hoverConfigmap = false
+    @State private var hints: [String] = []
     private let block: CGFloat = 10
     private let rowWidth: CGFloat = 330
     
@@ -19,77 +21,50 @@ struct Deployment: View {
         scrollView {
             VStack(alignment: .leading, spacing: 7.5)  {
                 section("Jenkins", spacing: 7.5) {
-                    hintRow("Deployment", [
-                        "Deployment 開發規則",
-                        "RC/Prod 改 staging branch 並發 MR 給 SRE",
-                        "＊ Staging/Demo/Hotfix 環境吃 staging branch",
-                        "＊ RC/Prod 環境吃 master branch",
-                    ], [])
+                    hintRow("Deployment", deployment.deployment.description, [])
                     
                     hintRow("開發", [
                         "部署 Dependency Package",
                         "所有環境都是吃 development branch"
                     ], [
-                        LinkSet("Natu",Config.Jenkins.Natu.Staging),
-                        LinkSet("ProtoBuf", Config.Jenkins.ProtoBuf.Staging)
+                        LinkSet("Natu", deployment.develop.natu ?? ""),
+                        LinkSet("ProtoBuf", deployment.develop.protopuf ?? "")
                     ])
                     
-                    hintRow("AllProject", [
-                        "部署其他 Server",
-                        "release 包版:",
-                        "feature branch merge 進 demo branch ( 記得發MR )",
-                        "jenkins Demo 部一版後，在 jenkins RC 包版",
-                    ], [
-                        LinkSet("Staging", Config.Jenkins.AllProject.Staging, copy: "*"),
-                        LinkSet("Demo", Config.Jenkins.AllProject.Demo),
-                        LinkSet("RC", Config.Jenkins.AllProject.RC),
+                    hintRow("AllProject", deployment.allProject.description, [
+                        LinkSet("Staging", deployment.allProject.staging ?? "", copy: "*"),
+                        LinkSet("Demo", deployment.allProject.demo ?? ""),
+                        LinkSet("RC", deployment.allProject.rc ?? ""),
                     ])
                     
-                    hintRow("APIGateway", [
-                        "部署 muffet",
-                        "release 包版:",
-                        "feature branch merge 進 demo branch ( 記得發MR )",
-                        "jenkins Demo 部一版後，在 jenkins RC 包版",
-                    ], [
-                        LinkSet("Staging", Config.Jenkins.APIGateway.Staging, copy: "*"),
-                        LinkSet("Demo", Config.Jenkins.APIGateway.Demo),
-                        LinkSet("RC", Config.Jenkins.APIGateway.RC),
+                    hintRow("APIGateway", deployment.apiGateway.description, [
+                        LinkSet("Staging", deployment.apiGateway.staging ?? "", copy: "*"),
+                        LinkSet("Demo", deployment.apiGateway.demo ?? ""),
+                        LinkSet("RC", deployment.apiGateway.rc ?? ""),
                     ])
                     
-                    hintRow("Configmap", [
-                        "Configmap 開發規則",
-                        "RC/Prod 改 staging branch 並發 MR 給 SRE",
-                        "＊ Staging/Demo/Hotfix 環境吃 staging branch",
-                        "＊ RC/Prod 環境吃 master branch",
-                    ], [
-                        LinkSet("Staging", Config.Jenkins.Configmap.Staging),
-                        LinkSet("Demo", Config.Jenkins.Configmap.Demo),
-                        LinkSet("Hotfix", Config.Jenkins.Configmap.Hotfix),
+                    hintRow("Configmap", deployment.configMap.description, [
+                        LinkSet("Staging", deployment.configMap.staging ?? ""),
+                        LinkSet("Demo", deployment.configMap.demo ?? ""),
+                        LinkSet("Hotfix", deployment.configMap.hotfix ?? ""),
                     ])
                     
-                    hintRow("PairDeploy", [
-                        "部署交易對",
-                        "Configmap 要記得部署",
-                    ], [
-                        LinkSet("Staging", Config.Jenkins.PairDeploy.Staging),
-                        LinkSet("Demo", Config.Jenkins.PairDeploy.Demo),
-                        LinkSet("Hotfix", Config.Jenkins.PairDeploy.Hotfix),
+                    hintRow("PairDeploy", deployment.pairDeploy.description, [
+                        LinkSet("Staging", deployment.pairDeploy.staging ?? ""),
+                        LinkSet("Demo", deployment.pairDeploy.demo ?? ""),
+                        LinkSet("Hotfix", deployment.pairDeploy.hotfix ?? ""),
                     ])
                     
-                    hintRow("OrderCheck", [
-                        "掉單檢查JOB",
-                    ], [
-                        LinkSet("Staging", Config.Jenkins.OrderCheck.Staging),
-                        LinkSet("Demo", Config.Jenkins.OrderCheck.Demo),
-                        LinkSet("Hotfix", Config.Jenkins.OrderCheck.Hotfix),
+                    hintRow("OrderCheck", deployment.orderCheck.description, [
+                        LinkSet("Staging", deployment.orderCheck.staging ?? ""),
+                        LinkSet("Demo", deployment.orderCheck.demo ?? ""),
+                        LinkSet("Hotfix", deployment.orderCheck.hotfix ?? ""),
                     ])
                     
-                    hintRow("OrderCancel", [
-                        "掉單取消JOB",
-                    ], [
-                        LinkSet("Staging", Config.Jenkins.OrderCancel.Staging),
-                        LinkSet("Demo", Config.Jenkins.OrderCancel.Demo),
-                        LinkSet("Hotfix", Config.Jenkins.OrderCancel.Hotfix),
+                    hintRow("OrderCancel", deployment.orderCancel.description, [
+                        LinkSet("Staging", deployment.orderCancel.staging ?? ""),
+                        LinkSet("Demo", deployment.orderCancel.demo ?? ""),
+                        LinkSet("Hotfix", deployment.orderCancel.hotfix ?? ""),
                     ])
                 }
                 
@@ -98,6 +73,10 @@ struct Deployment: View {
                 
                 Spacer()
             }
+        }
+        .onReceive(container.appstate.secret) {
+            guard let sec = $0 else { return }
+            deployment = sec.bito.deployment
         }
     }
     
@@ -147,11 +126,9 @@ struct Deployment: View {
     }
 }
 
-#if Debug
-struct Deployment_Previews: PreviewProvider {
-    static var previews: some View {
-        Deployment()
-            .frame(size: Config.menubarSize)
-    }
+#Preview {
+    Deployment()
+        .frame(size: Config.menubarSize)
+        .padding()
+        .inject(.default)
 }
-#endif

@@ -57,7 +57,7 @@ struct ButtonPanel: View {
             
             Text("⌘+1 Copy    ⌘+2 Link")
                 .font(.system(size: 10))
-                .foregroundColor(.primary25)
+                .foregroundColor(.primaryQuarter)
             
             HStack {
                 Text("按鈕名稱")
@@ -96,7 +96,7 @@ struct ButtonPanel: View {
             
             Text("⌘+Enter 可直接\(inputID.isNil ?"新增":"確認修改")")
                 .font(.system(size: 10))
-                .foregroundColor(.primary25)
+                .foregroundColor(.primaryQuarter)
                 .padding(.bottom, 10)
             
             let buttonWidth: CGFloat = 100

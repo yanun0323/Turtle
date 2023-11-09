@@ -3,65 +3,56 @@ import Ditto
 
 // MARK: Main
 struct Connecting: View {
+    @Environment(\.injected) private var container
     private let block: CGFloat = 10
     private let rowWidth: CGFloat = 300
+    @State private var database: Secret.Bito.Database = Secret.default.bito.database
 
     var body: some View {
         scrollView {
             VStack(spacing: 10) {
                 block("MySQL", [
                     CopySets("Staging", [
-                        Config.MySQL.Staging.Host,
-                        Config.MySQL.Staging.User,
-                        Config.MySQL.Staging.Password,
-                        Config.MySQL.Staging.Database,
+                        database.mysql.staging.host,
+                        database.mysql.staging.username,
+                        database.mysql.staging.password,
+                        database.mysql.staging.database,
                     ]),
                     CopySets("Demo", [
-                        Config.MySQL.Demo.Host,
-                        Config.MySQL.Demo.User,
-                        Config.MySQL.Demo.Password,
-                        Config.MySQL.Demo.Database,
+                        database.mysql.demo.host,
+                        database.mysql.demo.username,
+                        database.mysql.demo.password,
+                        database.mysql.demo.database,
                     ]),
                     CopySets("Hotfix", [
-                        Config.MySQL.Hotfix.Host,
-                        Config.MySQL.Hotfix.User,
-                        Config.MySQL.Hotfix.Password,
-                        Config.MySQL.Hotfix.Database,
+                        database.mysql.hotfix.host,
+                        database.mysql.hotfix.username,
+                        database.mysql.hotfix.password,
+                        database.mysql.hotfix.database,
                     ]),
-                    CopySets("ExStaging", [
-                        Config.MySQL.ExStaging.Host,
-                        Config.MySQL.ExStaging.User,
-                        Config.MySQL.ExStaging.Password,
-                        Config.MySQL.ExStaging.Database,
-                    ])
                 ])
                 
                 block("Mongo", [
                     CopySets("Staging", [
-                        Config.Mongo.Staging.Host,
-                        Config.Mongo.Staging.User,
-                        Config.Mongo.Staging.Password,
-                        Config.Mongo.Staging.Database,
+                        database.mongo.staging.host,
+                        database.mongo.staging.username,
+                        database.mongo.staging.password,
+                        database.mongo.staging.database,
                     ]),
-                    CopySets("ExStaging", [
-                        Config.Mongo.ExStaging.Host,
-                        Config.Mongo.ExStaging.User,
-                        Config.Mongo.ExStaging.Password,
-                        Config.Mongo.ExStaging.Database,
-                    ])
                 ])
                 
                 block("Redis", [
-                    CopySets("Staging", [Config.Redis.Staging]),
-                    CopySets("Demo", [Config.Redis.Demo]),
-                    CopySets("Hotfix", [Config.Redis.Hotfix]),
-                    CopySets("Ex-Staging", [Config.Redis.ExStaging]),
-                    CopySets("Ex-Demo", [Config.Redis.ExDemo]),
-                    CopySets("Ex-Hotfix", [Config.Redis.ExHotfix]),
+                    CopySets("Staging", [database.redis.staging]),
+                    CopySets("Demo", [database.redis.demo]),
+                    CopySets("Hotfix", [database.redis.hotfix]),
                 ], isRedis: true)
                 
                 Spacer()
             }
+        }
+        .onReceive(container.appstate.secret) {
+            guard let sec = $0 else { return }
+            database = sec.bito.database
         }
     }
     
@@ -138,12 +129,10 @@ extension Connecting {
     }
 }
 
-#if Debug
-struct Connection_Previews: PreviewProvider {
-    static var previews: some View {
-        Connecting()
-            .frame(size: Config.menubarSize)
-    }
+#Preview {
+    Connecting()
+        .frame(size: Config.menubarSize)
+        .padding()
+        .inject(.default)
 }
-#endif
 

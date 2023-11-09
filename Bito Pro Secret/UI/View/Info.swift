@@ -78,17 +78,15 @@ struct Info: View {
             }
             Text("Developed By Yanun")
                 .font(.caption)
-                .foregroundColor(.primary25)
+                .foregroundColor(.primaryQuarter)
                 .padding(.bottom, 5)
         }
     }
 }
 
-#if Debug
-struct Info_Previews: PreviewProvider {
-    static var previews: some View {
-        Info()
-            .frame(size: Config.menubarSize)
-    }
+#Preview {
+    Info()
+        .frame(size: Config.menubarSize)
+        .padding()
+        .inject(.default)
 }
-#endif

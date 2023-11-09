@@ -15,6 +15,7 @@ struct Setting: View {
     @State private var closeAppAfterLink: Bool = false
     @State private var useUnixForCopy: Bool = false
     @State private var quickSwitch: Bool = false
+    @State private var secret: Secret = .default
     
     var body: some View {
         scrollView {
@@ -36,6 +37,10 @@ struct Setting: View {
         .onChange(of: closeAppAfterLink) { container.interactor.preference.setCloseAppAfterLink($0) }
         .onChange(of: useUnixForCopy) { container.interactor.preference.setUseUnixForCopy($0) }
         .onChange(of: quickSwitch) { container.interactor.preference.setQuickSwitch($0) }
+        .onReceive(container.appstate.secret) {
+            guard let sec = $0 else { return }
+            secret = sec
+        }
         
     }
     
@@ -71,9 +76,8 @@ struct Setting: View {
                 VStack(spacing: 10) {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
                         withAnimation(Config.Animation.Default) {
-                            NSApp.appearance = nil
                             appearance = 0
-                            container.interactor.preference.setAppearance(0)
+                            container.interactor.preference.setColorScheme(0)
                         }
                     } content: {
                         ZStack {
@@ -107,9 +111,8 @@ struct Setting: View {
                 VStack(spacing: 10)  {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
                         withAnimation(Config.Animation.Default) {
-                            NSApp.appearance = NSAppearance(named: .aqua)
                             appearance = 1
-                            container.interactor.preference.setAppearance(1)
+                            container.interactor.preference.setColorScheme(1)
                         }
                     } content: {
                         lightImage()
@@ -125,9 +128,8 @@ struct Setting: View {
                 VStack(spacing: 10)  {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
                         withAnimation(Config.Animation.Default) {
-                            NSApp.appearance = NSAppearance(named: .darkAqua)
                             appearance = 2
-                            container.interactor.preference.setAppearance(2)
+                            container.interactor.preference.setColorScheme(2)
                         }
                     } content: {
                         darkImage()
@@ -227,7 +229,7 @@ struct Setting: View {
 
 extension Setting {
     func handleOnAppear() {
-        appearance = container.interactor.preference.getAppearance()?.int() ?? 0
+        appearance = container.interactor.preference.getColorScheme()?.int() ?? 0
         closeAppAfterCopy = container.interactor.preference.getCloseAppAfterCopy()
         closeAppAfterLink = container.interactor.preference.getCloseAppAfterLink()
         useUnixForCopy = container.interactor.preference.getUseUnixForCopy()
@@ -235,11 +237,9 @@ extension Setting {
     }
 }
 
-#if Debug
-struct Setting_Previews: PreviewProvider {
-    static var previews: some View {
-        Setting()
-            .frame(size: Config.menubarSize)
-    }
+#Preview {
+    Setting()
+        .frame(size: Config.menubarSize)
+        .padding()
+        .inject(.default)
 }
-#endif

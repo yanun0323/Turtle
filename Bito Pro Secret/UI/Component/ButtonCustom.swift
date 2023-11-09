@@ -83,7 +83,7 @@ struct ButtonCopy: View {
                         Text(name)
                         Image(systemName: image ?? "doc.on.doc")
                             .font(.caption2)
-                            .foregroundColor(.primary25)
+                            .foregroundColor(.primaryQuarter)
                     }
                 }
             }
@@ -116,7 +116,7 @@ struct ButtonPaste: View {
                         Text(name)
                         Image(systemName: image ?? "doc")
                             .font(.caption2)
-                            .foregroundColor(.primary25)
+                            .foregroundColor(.primaryQuarter)
                     }
                 }
             }

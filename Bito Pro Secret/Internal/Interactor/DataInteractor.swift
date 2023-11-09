@@ -14,7 +14,7 @@ struct DataInteractor {
 
 extension DataInteractor {
     func pushUserButtonList() {
-        System.async {
+        System.asyncio {
             return System.doCatch("push list UserButton") {
                 return try repo.listUserButton()
             }

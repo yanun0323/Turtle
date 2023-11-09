@@ -14,7 +14,7 @@ extension View {
             if title.count != 0 {
                 Text(title)
                     .font(font)
-                    .foregroundColor(.primary50)
+                    .foregroundColor(.primaryHalf)
                     .padding(.leading, 5)
             }
             HStack(spacing: 0) {

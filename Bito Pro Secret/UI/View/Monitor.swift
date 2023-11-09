@@ -9,6 +9,8 @@ import SwiftUI
 import Ditto
 
 struct Monitor: View {
+    @Environment(\.injected) private var container
+    @State private var monitor: Secret.Bito.Monitor = Secret.default.bito.monitor
     private let block: CGFloat = 10
     private let rowWidth: CGFloat = 300
     
@@ -16,58 +18,48 @@ struct Monitor: View {
         scrollView {
             section("K8S") {
                 HStack(spacing: 5) {
-                    TextLink(name: "Staging", link: Config.K8s.Staging.Link, copy: Config.K8s.Staging.Token)
-                    ButtonCopy(name: "帳號", copy: Config.K8s.Staging.User)
-                    ButtonCopy(name: "密碼", copy: Config.K8s.Staging.Password)
-                    ButtonCopy(name: "Token", copy: Config.K8s.Staging.Token)
+                    TextLink(name: "Staging", link: monitor.k8s.staging.url, copy: monitor.k8s.staging.token)
+                    ButtonCopy(name: "帳號", copy: monitor.k8s.staging.username)
+                    ButtonCopy(name: "密碼", copy: monitor.k8s.staging.password)
+                    ButtonCopy(name: "Token", copy: monitor.k8s.staging.token)
                 }
                 
                 HStack(spacing: 5) {
-                    TextLink(name: "Production", link: Config.K8s.Production.Link, copy: Config.K8s.Production.Token)
-                    ButtonCopy(name: "帳號", copy: Config.K8s.Production.User)
-                    ButtonCopy(name: "密碼", copy: Config.K8s.Production.Password)
-                    ButtonCopy(name: "Token", copy: Config.K8s.Production.Token)
-                }
-                
-                HStack(spacing: 5) {
-                    TextLink(name: "Ex-Stg", link: Config.K8s.StagingEx.Link, copy: Config.K8s.StagingEx.Token)
-                    ButtonCopy(name: "帳號", copy: Config.K8s.StagingEx.User)
-                    ButtonCopy(name: "密碼", copy: Config.K8s.StagingEx.Password)
-                    ButtonCopy(name: "Token", copy: Config.K8s.StagingEx.Token)
-                }
-                
-                HStack(spacing: 5) {
-                    TextLink(name: "Ex-Prod", link: Config.K8s.ProductionEx.Link, copy: Config.K8s.ProductionEx.Token)
-                    ButtonCopy(name: "帳號", copy: Config.K8s.ProductionEx.User)
-                    ButtonCopy(name: "密碼", copy: Config.K8s.ProductionEx.Password)
-                    ButtonCopy(name: "Token", copy: Config.K8s.ProductionEx.Token)
+                    TextLink(name: "Production", link: monitor.k8s.production.url, copy: monitor.k8s.production.token)
+                    ButtonCopy(name: "帳號", copy: monitor.k8s.production.username)
+                    ButtonCopy(name: "密碼", copy: monitor.k8s.production.password)
+                    ButtonCopy(name: "Token", copy: monitor.k8s.production.token)
                 }
             }
             
             section("Other") {
-                linkRow("Metabase", [CopySet("Production", Config.Monitor.Metabase)])
-                linkRow("Grafana", [CopySet("Dev / Prod", Config.Monitor.Grafana)])
-                linkRow("OpenSearch", [CopySet("Dev / Prod", Config.Monitor.OpenSearch)])
-                linkRow("OneSignal", [CopySet("Develop", Config.Monitor.OneSignal)])
+                linkRow("Metabase", [CopySet("Production", monitor.other.metabase)])
+                linkRow("Grafana", [CopySet("Dev / Prod", monitor.other.grafana)])
+                linkRow("OpenSearch", [CopySet("Dev / Prod", monitor.other.openSearch)])
+                linkRow("OneSignal", [CopySet("Develop", monitor.other.oneSignal)])
                 linkRow("Kafdrop",[
-                    CopySet("Production", Config.Monitor.KafdropProduction),
+                    CopySet("Production", monitor.other.kafdrop.production),
                 ])
                 linkRow("",[
-                    CopySet("Stg",Config.Monitor.KafdropStaging),
-                    CopySet("Demo", Config.Monitor.KafdropDemo),
-                    CopySet("Hofix",Config.Monitor.KafdropHotfix),
+                    CopySet("Stg", monitor.other.kafdrop.staging),
+                    CopySet("Demo",  monitor.other.kafdrop.demo),
+                    CopySet("Hotfix", monitor.other.kafdrop.hotfix),
                 ])
                 linkRow("Pro 後台",[
-                    CopySet("Production", Config.Monitor.BitoBackProduction),
+                    CopySet("Production", monitor.other.admin.production),
                 ])
                 linkRow("",[
-                    CopySet("Stg",Config.Monitor.BitoBackStaging),
-                    CopySet("Demo", Config.Monitor.BitoBackDemo),
-                    CopySet("Hofix",Config.Monitor.BitoBackHotfix),
+                    CopySet("Stg", monitor.other.admin.staging),
+                    CopySet("Demo",  monitor.other.admin.demo),
+                    CopySet("Hotfix", monitor.other.admin.hotfix),
                 ])
             }
             
             Spacer()
+        }
+        .onReceive(container.appstate.secret) {
+            guard let sec = $0 else { return }
+            monitor = sec.bito.monitor
         }
     }
     
@@ -88,11 +80,9 @@ struct Monitor: View {
     }
 }
 
-#if Debug
-struct Monitor_Previews: PreviewProvider {
-    static var previews: some View {
-        Monitor()
-            .frame(size: Config.menubarSize)
-    }
+#Preview {
+    Monitor()
+        .frame(size: Config.menubarSize)
+        .padding()
+        .inject(.default)
 }
-#endif

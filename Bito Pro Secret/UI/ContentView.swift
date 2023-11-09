@@ -105,7 +105,7 @@ struct ContentView: View {
             } content: {
                 Image(systemName: "info.circle.fill")
                     .font(.title3)
-                    .foregroundColor(page == -1 ? .accentColor : .primary50)
+                    .foregroundColor(page == -1 ? .accentColor : .primaryHalf)
             }
             
             Block(width: 1, height: 1)
@@ -129,7 +129,7 @@ struct ContentView: View {
             } content: {
                 Image(systemName: "gearshape.fill")
                     .font(.title3)
-                    .foregroundColor(page == -2 ? .accentColor : .primary50)
+                    .foregroundColor(page == -2 ? .accentColor : .primaryHalf)
             }
         }
         .foregroundColor(.dark)
@@ -167,7 +167,7 @@ struct ContentView: View {
             container.interactor.copyTimestamp()
         } content: {
             Text("有些事明天再做就好")
-                .foregroundColor(.primary50)
+                .foregroundColor(.primaryHalf)
         }
     }
     
@@ -230,7 +230,7 @@ struct ContentView: View {
                 Text(popupText)
                     .kerning(1)
                     .font(.caption)
-                    .foregroundColor(.primary50)
+                    .foregroundColor(.primaryHalf)
                     .padding(.bottom, 1)
             }
         }

@@ -15,42 +15,43 @@ enum FocusField: Hashable {
 struct Other: View {
     @Environment(\.injected) private var container
     @Environment(\.openURL) private var openURL
+    @FocusState private var focus: FocusField?
     private let block: CGFloat = 10
     private let textFieldHeight: CGFloat = 25
-    @FocusState var focus: FocusField?
     
     // MARK: Date Transfer
     private static let stringInputFormat = "yyyy-MM-dd HH:mm:ss ZZ"
     private static let tempDateFormat: String = "yyyy-MM-dd HH:mm:ss"
-    @State var stringInput: String = Date.now.string(Self.stringInputFormat)
-    @State var unixInput: String = Date.now.unix.description
+    @State private var stringInput: String = Date.now.string(Self.stringInputFormat)
+    @State private var unixInput: String = Date.now.unix.description
     
-    @State var yearInput: String = Date.now.string("yyyy")
-    @State var monthInput: String = Date.now.string("MM")
-    @State var dayInput: String = Date.now.string("dd")
-    @State var hourInput: String = Date.now.string("HH")
-    @State var minuteInput: String = Date.now.string("mm")
-    @State var secondInput: String = Date.now.string("ss")
+    @State private var yearInput: String = Date.now.string("yyyy")
+    @State private var monthInput: String = Date.now.string("MM")
+    @State private var dayInput: String = Date.now.string("dd")
+    @State private var hourInput: String = Date.now.string("HH")
+    @State private var minuteInput: String = Date.now.string("mm")
+    @State private var secondInput: String = Date.now.string("ss")
+    @State private var other: Secret.Bito.Other = Secret.default.bito.other
     
     var body: some View {
         scrollView {
             VStack(spacing: 10) {
                 section("Backend") {
                     HStack(spacing: 30) {
-                        TextLinkBito(name: "大機密", link: Config.Bito.ClickupSecret, image: "rectangle.and.pencil.and.ellipsis.rtl")
-                        TextLinkBito(name: "大秘寶", link: Config.Bito.ClickupTreasure, image: "shippingbox")
+                        TextLinkBito(name: "大機密", link: other.backendBigSecret, image: "rectangle.and.pencil.and.ellipsis.rtl")
+                        TextLinkBito(name: "大秘寶", link: other.backendBigTresure, image: "shippingbox")
                     }
                 }
                 
                 section("Bito") {
                     HStack(alignment: .top, spacing: 30) {
                         VStack(spacing: 10) {
-                            TextLinkBito(name: "人資系統", link: Config.Bito.HR, image: "calendar")
-                            TextLinkBito(name: "BitoLand", link: Config.Bito.BitoLand, image: "house")
+                            TextLinkBito(name: "人資系統", link: other.hr, image: "calendar")
+                            TextLinkBito(name: "BitoLand", link: other.bitoLand, image: "house")
                         }
                         VStack(spacing: 10) {
-                            TextLinkBito(name: "座位表", link: Config.Bito.Set, image: "chair.lounge")
-                            TextLinkBito(name: "分享會", link: Config.Bito.Share, image: "video")
+                            TextLinkBito(name: "座位表", link: other.seat, image: "chair.lounge")
+                            TextLinkBito(name: "分享會", link: other.shareMeeting, image: "video")
                         }
                     }
                 }
@@ -61,6 +62,10 @@ struct Other: View {
                 
                 Spacer()
             }
+        }
+        .onReceive(container.appstate.secret) {
+            guard let sec = $0 else { return }
+            other = sec.bito.other
         }
     }
     
@@ -172,16 +177,6 @@ struct Other: View {
 
     }
 }
-
-#if Debug
-struct Bito_Previews: PreviewProvider {
-    static var previews: some View {
-        Other()
-            .frame(size: Config.menubarSize)
-            .inject(.default)
-    }
-}
-#endif
 
 extension Other {
     func limitation(_ text: Binding<String>, limit: Int, max: Int) -> Binding<String> {
@@ -298,4 +293,11 @@ extension Other {
             focus = nil
         }
     }
+}
+
+#Preview {
+    Other()
+        .frame(size: Config.menubarSize)
+        .padding()
+        .inject(.default)
 }
