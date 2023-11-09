@@ -12,6 +12,8 @@ struct AppState {
     public let pubQuickSwitch = PassthroughSubject<Bool, Never>()
     
     public let pubPopupPanelOption = PassthroughSubject<PopupPanelOption?, Never>()
+    public let scheme = PassthroughSubject<ColorScheme?, Never>()
+    public let secret = CurrentValueSubject<Secret?, Never>(nil)
 }
 
 extension AppState {

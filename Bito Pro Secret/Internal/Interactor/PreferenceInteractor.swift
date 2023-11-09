@@ -98,24 +98,35 @@ extension PreferenceInteractor {
         }
     }
     
-    func getAppearance() -> NSAppearance? {
+    func getColorScheme() -> ColorScheme? {
         return System.doCatch("get appearance") {
-            let appearance = try repo.getAppearance()
-            switch appearance {
-                case 1:
-                    return NSAppearance(named: .aqua)
-                case 2:
-                    return NSAppearance(named: .darkAqua)
-                default:
-                    return nil
-            }
-        } ?? nil
-    }
-    
-    func setAppearance(_ value: Int) {
-        System.doCatch("set appearance") {
-            try repo.setAppearance(value)
+            return ColorScheme.format(try repo.getAppearance() ?? 0)
         }
     }
     
+    func setColorScheme(_ value: Int) {
+        System.doCatch("set appearance") {
+            try repo.setAppearance(value)
+        }
+        
+        System.async {
+            appstate.scheme.send(ColorScheme.format(value))
+        }
+    }
+    
+    func getSecret() -> Secret {
+        return System.doCatch("get secret") {
+            try repo.getSecret()
+        } ?? .default
+    }
+    
+    func setSecret(_ value: Secret) {
+        System.doCatch("set secret") {
+            try repo.setSecret(value)
+        }
+        
+        System.async {
+            appstate.secret.send(value)
+        }
+    }
 }

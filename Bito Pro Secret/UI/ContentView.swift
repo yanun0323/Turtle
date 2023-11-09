@@ -18,9 +18,10 @@ struct ContentView: View {
     @State private var showWhatsNew: Bool = false
     
     @State private var isInit: Bool = false
-    
     @State private var popupPanelOption: PopupPanelOption? = nil
     var showPopupSecond: UInt32 = 1
+    
+    @State var colorScheme: ColorScheme? = nil
     
     var body: some View {
         ZStack {
@@ -67,7 +68,9 @@ struct ContentView: View {
         }
         .onReceive(container.appstate.pubPopupPanelOption) { popupPanelOption = $0 }
         .onReceive(container.appstate.pubQuickSwitch) { quickSwitch = $0 }
+        .onReceive(container.appstate.scheme) { colorScheme = $0 }
         .background(.background.opacity(0.3))
+        .preferredColorScheme(colorScheme)
     }
     
     @ViewBuilder

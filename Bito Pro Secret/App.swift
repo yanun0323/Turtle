@@ -30,14 +30,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private var isAppOpen = false
     
     @MainActor func applicationDidFinishLaunching(_ notification: Notification) {
-        NSApp.appearance = container.interactor.preference.getAppearance()
+        let scheme = container.interactor.preference.getColorScheme()
+        let sec = container.interactor.preference.getSecret()
+        container.interactor.system.pushSecret(sec)
         
         popOver.setValue(true, forKeyPath: "shouldHideAnchor")
         popOver.contentSize = Config.menubarSize
         popOver.behavior = .transient
         popOver.animates = true
         popOver.contentViewController = NSViewController()
-        popOver.contentViewController = NSHostingController(rootView: ContentView()
+        popOver.contentViewController = NSHostingController(rootView: ContentView(colorScheme: scheme)
             .textEditerCommand()
             .environment(\.injected, container)
             .environment(\.popOver, popOver)

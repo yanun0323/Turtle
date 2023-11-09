@@ -78,6 +78,14 @@ extension PreferenceDao where Self: PreferenceRepository {
         UserDefaults.appearance = value
     }
     
+    func getSecret() throws -> Secret? {
+        guard let data = UserDefaults.secret?.data(using: .utf8) else { return nil }
+        return try JSONDecoder().decode(Secret.self, from: data)
+    }
+    
+    func setSecret(_ value: Secret) throws {
+        UserDefaults.secret = String(data: try JSONEncoder().encode(value), encoding: .utf8)
+    }
 }
 
 extension UserDefaults {
@@ -115,4 +123,7 @@ extension UserDefaults {
     
     @UserDefault(key: "Theme", defaultValue: 0, .application)
     static var appearance: Int?
+    
+    @UserDefault(key: "USER_SECRET", .application)
+    static var secret: String?
 }

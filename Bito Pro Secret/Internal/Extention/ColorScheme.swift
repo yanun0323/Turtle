@@ -1,9 +1,6 @@
 import SwiftUI
 
-extension NSAppearance {
-    static var light = NSAppearance(named: .aqua)
-    static var dark = NSAppearance(named: .darkAqua)
-    
+extension ColorScheme {
     func int() -> Int {
         switch self {
             case Self.light:
@@ -15,12 +12,12 @@ extension NSAppearance {
         }
     }
     
-    static func format(_ value: Int) -> NSAppearance? {
+    static func format(_ value: Int) -> ColorScheme? {
         switch value {
             case 1:
-                return light
+                return .light
             case 2:
-                return dark
+                return .dark
             default:
                 return nil
         }

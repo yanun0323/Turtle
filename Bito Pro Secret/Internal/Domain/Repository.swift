@@ -37,4 +37,7 @@ protocol PreferenceRepository {
     
     func getAppearance() throws -> Int?
     func setAppearance(_ value: Int) throws
+    
+    func getSecret() throws -> Secret?
+    func setSecret(_ value: Secret) throws
 }

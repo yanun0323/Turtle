@@ -29,4 +29,17 @@ extension SystemInteractor {
             appstate.pubPopupPanelOption.send(v)
         }
     }
+    
+    func pushSecret(_ v: Secret) {
+        System.async {
+            appstate.secret.send(v)
+        }
+    }
+    
+    func pushScheme(_ v: ColorScheme?) {
+        System.async {
+            appstate.scheme.send(v)
+        }
+    }
 }
+
