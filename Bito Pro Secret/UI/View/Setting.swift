@@ -16,27 +16,49 @@ struct Setting: View {
     @State private var useUnixForCopy: Bool = false
     @State private var quickSwitch: Bool = false
     @State private var secret: Secret = .default
+    @State private var exportJsonSucced: Bool? = nil
+    @State private var importJsonSucced: Bool? = nil
     
     var body: some View {
-        scrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                themeBlock()
-                
-                toggle("拷貝後隱藏小工具", isOn: $closeAppAfterCopy)
-                toggle("開啟連結後隱藏小工具", isOn: $closeAppAfterLink)
-                toggle("使用Unix複製時間", isOn: $useUnixForCopy)
-                toggle("使用快速切換", isOn: $quickSwitch)
-                
-                Spacer()
-                
-                shutdownBlock()
+        VStack(spacing: 0) {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 20) {
+                    themeBlock()
+                    
+                    toggle("拷貝後隱藏小工具", isOn: $closeAppAfterCopy)
+                    toggle("開啟連結後隱藏小工具", isOn: $closeAppAfterLink)
+                    toggle("使用Unix複製時間", isOn: $useUnixForCopy)
+                    toggle("使用快速切換", isOn: $quickSwitch)
+                    
+                    jsonBlock()
+                    
+                    Spacer()
+                    
+                }
             }
+            shutdownBlock()
         }
         .onAppear { handleOnAppear() }
         .onChange(of: closeAppAfterCopy) { container.interactor.preference.setCloseAppAfterCopy($0) }
         .onChange(of: closeAppAfterLink) { container.interactor.preference.setCloseAppAfterLink($0) }
         .onChange(of: useUnixForCopy) { container.interactor.preference.setUseUnixForCopy($0) }
         .onChange(of: quickSwitch) { container.interactor.preference.setQuickSwitch($0) }
+        .onChange(of: exportJsonSucced) {
+            if $0 == nil { return }
+            System.async {
+                sleep(3)
+            } main: {
+                exportJsonSucced = nil
+            }
+        }
+        .onChange(of: importJsonSucced) {
+            if $0 == nil { return }
+            System.async {
+                sleep(3)
+            } main: {
+                importJsonSucced = nil
+            }
+        }
         .onReceive(container.appstate.secret) {
             guard let sec = $0 else { return }
             secret = sec
@@ -48,6 +70,46 @@ struct Setting: View {
     private func toggle(_ title: String, isOn: Binding<Bool>) -> some View {
         Toggle(isOn: isOn) {
             Text(title)
+        }
+    }
+    
+    @ViewBuilder
+    private func jsonBlock() -> some View {
+        section("JSON", spacing: 5) {
+            Button(width: 150, height: 25, colors: [.blue, .glue], radius: 7) {
+                handleExportJson()
+            } content: {
+                Label("匯出 JSON", systemImage: "square.and.arrow.up")
+                    .foregroundStyle(.white)
+            }
+            
+            ZStack {
+                Label("匯出 JSON 成功", systemImage: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+                    .opacity(exportJsonSucced == true ? 1 : 0)
+                Label("匯出 JSON 失敗", systemImage: "multiply.circle.fill")
+                    .foregroundStyle(.red)
+                    .opacity(exportJsonSucced == false ? 1 : 0)
+            }
+            .font(.caption)
+            .animation(.easeInOut, value: exportJsonSucced)
+            
+            Button(width: 150, height: 25, color: .background, radius: 7) {
+                handleImportJson()
+            } content: {
+                Label("匯入 JSON", systemImage: "square.and.arrow.down")
+            }
+            
+            ZStack {
+                Label("匯入 JSON 成功", systemImage: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+                    .opacity(importJsonSucced == true ? 1 : 0)
+                Label("匯入 JSON 失敗", systemImage: "multiply.circle.fill")
+                    .foregroundStyle(.red)
+                    .opacity(importJsonSucced == false ? 1 : 0)
+            }
+            .font(.caption)
+            .animation(.easeInOut, value: importJsonSucced)
         }
     }
     
@@ -66,6 +128,7 @@ struct Setting: View {
             }
             Spacer()
         }
+        .padding(.vertical, 10)
     }
     
     @ViewBuilder
@@ -234,6 +297,16 @@ extension Setting {
         closeAppAfterLink = container.interactor.preference.getCloseAppAfterLink()
         useUnixForCopy = container.interactor.preference.getUseUnixForCopy()
         quickSwitch = container.interactor.preference.getQuickSwitch()
+        exportJsonSucced = nil
+        importJsonSucced = nil
+    }
+    
+    func handleExportJson() {
+        exportJsonSucced = true
+    }
+    
+    func handleImportJson() {
+        
     }
 }
 

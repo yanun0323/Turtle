@@ -9,7 +9,11 @@ struct ContentView: View {
     @FocusState private var focus: Bool
     @State private var textField: String = ""
     @State private var lastPage: Int = 0
+    #if DEBUG
+    @State private var page: Int = -2
+    #else
     @State private var page: Int = 0
+    #endif
     @State private var shutdowning: Bool = false
     @State private var popupText: String = ""
     @State private var showPopup: Bool = false

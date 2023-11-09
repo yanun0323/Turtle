@@ -64,9 +64,8 @@ struct Info: View {
                 container.interactor.updater.forceCheckForUpdates()
             } content: {
                 Text("檢查新版本")
-                    .foregroundColor(.transparent)
+                    .foregroundColor(.primary)
             }
-            .shadow(color: .section, radius: 3)
                 
             scrollView {
                 VStack(alignment: .leading, spacing: 10) {
