@@ -15,7 +15,7 @@
 		A81519982A0B88D400595D6B /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81519972A0B88D400595D6B /* Feature.swift */; };
 		A815199B2A0C946800595D6B /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815199A2A0C946800595D6B /* DependencyInjector.swift */; };
 		A815199D2A0C947300595D6B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815199C2A0C947300595D6B /* AppState.swift */; };
-		A83103822AE8DE020016A33D /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83103812AE8DE020016A33D /* Secret.swift */; };
+		A83103822AE8DE020016A33D /* Secret_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83103812AE8DE020016A33D /* Secret_Model.swift */; };
 		A836DEC02A2E0F3F002DF658 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836DEBF2A2E0F3F002DF658 /* ColorScheme.swift */; };
 		A83E46112A0CD31000FF19AE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83E46102A0CD31000FF19AE /* Repository.swift */; };
 		A83E46142A0CD36200FF19AE /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83E46132A0CD36200FF19AE /* Dao.swift */; };
@@ -32,7 +32,7 @@
 		A884C95F2886736100E30F86 /* UserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C95E2886736100E30F86 /* UserButton.swift */; };
 		A884C96128867FCA00E30F86 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C96028867FCA00E30F86 /* Info.swift */; };
 		A884C987288861DC00E30F86 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884C986288861DC00E30F86 /* Setting.swift */; };
-		A88600892AFD4BAD00BB43CE /* Secret_Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88600882AFD4BAD00BB43CE /* Secret_Value.swift */; };
+		A88600892AFD4BAD00BB43CE /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88600882AFD4BAD00BB43CE /* Secret.swift */; };
 		A888FF232A610F3F002DC299 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888FF222A610F3F002DC299 /* System.swift */; };
 		A8A2C6F628900EC800D75458 /* SwiftUIListReorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */; };
 		A8A32D892A687E1200090F1C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D882A687E1200090F1C /* Sparkle */; };
@@ -75,7 +75,7 @@
 		A81519972A0B88D400595D6B /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		A815199A2A0C946800595D6B /* DependencyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjector.swift; sourceTree = "<group>"; };
 		A815199C2A0C947300595D6B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		A83103812AE8DE020016A33D /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		A83103812AE8DE020016A33D /* Secret_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret_Model.swift; sourceTree = "<group>"; };
 		A836DEBF2A2E0F3F002DF658 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		A83E46102A0CD31000FF19AE /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		A83E46132A0CD36200FF19AE /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		A884C95E2886736100E30F86 /* UserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserButton.swift; sourceTree = "<group>"; };
 		A884C96028867FCA00E30F86 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		A884C986288861DC00E30F86 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
-		A88600882AFD4BAD00BB43CE /* Secret_Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret_Value.swift; sourceTree = "<group>"; };
+		A88600882AFD4BAD00BB43CE /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		A888FF222A610F3F002DC299 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		A8A2C6C6288E645B00D75458 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A8A2C6F528900EC800D75458 /* SwiftUIListReorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIListReorder.swift; sourceTree = "<group>"; };
@@ -274,8 +274,8 @@
 			isa = PBXGroup;
 			children = (
 				A888FF222A610F3F002DC299 /* System.swift */,
-				A83103812AE8DE020016A33D /* Secret.swift */,
-				A88600882AFD4BAD00BB43CE /* Secret_Value.swift */,
+				A83103812AE8DE020016A33D /* Secret_Model.swift */,
+				A88600882AFD4BAD00BB43CE /* Secret.swift */,
 				A8D32142287D52D600216B61 /* Secret.swift.backup */,
 			);
 			path = Config;
@@ -398,9 +398,9 @@
 				A884C95D2884803F00E30F86 /* NSTableView.swift in Sources */,
 				A8D3215A287DD9D500216B61 /* Deployment.swift in Sources */,
 				A884C987288861DC00E30F86 /* Setting.swift in Sources */,
-				A88600892AFD4BAD00BB43CE /* Secret_Value.swift in Sources */,
+				A88600892AFD4BAD00BB43CE /* Secret.swift in Sources */,
 				A83E46162A0CD37F00FF19AE /* DataDao.swift in Sources */,
-				A83103822AE8DE020016A33D /* Secret.swift in Sources */,
+				A83103822AE8DE020016A33D /* Secret_Model.swift in Sources */,
 				A83E46222A0D262200FF19AE /* ButtonPanel.swift in Sources */,
 				A8111EC529C7A190002A980C /* Set.swift in Sources */,
 				A83E461C2A0CD3CC00FF19AE /* PreferenceInteractor.swift in Sources */,
