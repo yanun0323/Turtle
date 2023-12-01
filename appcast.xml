@@ -12,7 +12,7 @@
             </description>
             <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/yanun0323/Turtle/raw/main/Turtle_1.0.1.zip" length="4396393" type="application/octet-stream" sparkle:edSignature="Ha3GiMuQiKpfZmia+HnfJzAYpXwmeq1+Cv517ploIGZ7OhUp1RwbmIEbmci+iTIDgZOQhQTv93AYb9UrgYufAQ=="/>
+            <enclosure url="https://github.com/yanun0323/Turtle/releases/download/1.0.1/Turtle_1.0.1.zip" length="4396393" type="application/octet-stream" sparkle:edSignature="Ha3GiMuQiKpfZmia+HnfJzAYpXwmeq1+Cv517ploIGZ7OhUp1RwbmIEbmci+iTIDgZOQhQTv93AYb9UrgYufAQ=="/>
         </item>
         
         <item>
