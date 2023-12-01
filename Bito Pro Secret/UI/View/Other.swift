@@ -7,9 +7,10 @@
 
 import SwiftUI
 import Ditto
+import BigInt
 
 enum FocusField: Hashable {
-    case date, string, unix, cron
+    case date, string, unix, cron, emIDEncode, emIDDecode, imIDEncode, imIDDecode, orderIDEncode, orderIDDecode, orderTypeDecode
 }
 
 struct Other: View {
@@ -32,6 +33,14 @@ struct Other: View {
     @State private var minuteInput: String = Date.now.string("mm")
     @State private var secondInput: String = Date.now.string("ss")
     @State private var other: Secret.Bito.Other = Secret.default.bito.other
+    
+    @State private var userEmIDEncoded = ""
+    @State private var userEmIDDecoded = ""
+    @State private var userImIDEncoded = ""
+    @State private var userImIDDecoded = ""
+    @State private var orderIDEncoded = ""
+    @State private var orderTypeDecoded = ""
+    @State private var orderIDDecoded = ""
     
     var body: some View {
         scrollView {
@@ -58,6 +67,8 @@ struct Other: View {
                 
                 section("時間轉換工具", font: .body, dateTransfer)
                 
+                section("ID 加解密工具", font: .body, idCoder)
+                
                 section("Mermaid", mermaidBlock)
                 
                 Spacer()
@@ -67,6 +78,82 @@ struct Other: View {
             guard let sec = $0 else { return }
             other = sec.bito.other
         }
+        .hotkey(key: .kVK_Return) {
+            handleDate2All()
+            handleUnix2All()
+            handleString2All()
+        }
+    }
+
+    @ViewBuilder
+    func textField(_ titleKey: LocalizedStringKey, text: Binding<String>) -> some View {
+        TextField(titleKey, text: text)
+            .frame(height: textFieldHeight)
+            .padding(.horizontal, 7)
+            .background(Color.background2, ignoresSafeAreaEdges: [])
+            .cornerRadius(7)
+    }
+    
+    @ViewBuilder
+    private func idCoder() -> some View {
+        HStack {
+            VStack {
+                Text("UserEm")
+                    .frame(height: textFieldHeight)
+                Text("UserIm")
+                    .frame(height: textFieldHeight)
+                Text("Order")
+                    .frame(height: textFieldHeight)
+            }
+            .foregroundStyle(.primary.opacity(0.8))
+            .fontDesign(.rounded)
+            .frame(width: 50)
+            
+            VStack {
+                textField("5908476992", text: $userEmIDEncoded)
+                    .focused($focus, equals: .emIDEncode)
+                textField("3687091180", text: $userImIDEncoded)
+                    .focused($focus, equals: .imIDEncode)
+                textField("SL-2170878897", text: $orderIDEncoded)
+                    .focused($focus, equals: .orderIDEncode)
+            }
+            
+            VStack {
+                Image(systemName: "arrow.left.arrow.right")
+                    .frame(height: textFieldHeight)
+                Image(systemName: "arrow.left.arrow.right")
+                    .frame(height: textFieldHeight)
+                Image(systemName: "arrow.left.arrow.right")
+                    .frame(height: textFieldHeight)
+            }
+            .foregroundStyle(.gray)
+            
+            VStack {
+                textField("11", text: $userEmIDDecoded)
+                    .focused($focus, equals: .emIDDecode)
+                textField("25", text: $userImIDDecoded)
+                    .focused($focus, equals: .imIDDecode)
+                HStack(spacing: 5) {
+                    textField("SL", text: $orderTypeDecoded)
+                        .focused($focus, equals: .orderTypeDecode)
+                        .frame(width: 40, alignment: .center)
+                        .multilineTextAlignment(.center)
+                    textField("18051", text: $orderIDDecoded)
+                        .focused($focus, equals: .orderIDDecode)
+                }
+            }
+            .frame(width: 145)
+        }
+        .textFieldStyle(.plain)
+        .padding(.horizontal, 5)
+        .monospacedDigit()
+        .onChange(of: userEmIDDecoded) { _ in handleEncodeEmID() }
+        .onChange(of: userEmIDEncoded) { _ in handleDecodeEmID() }
+        .onChange(of: userImIDDecoded) { _ in handleEncodeImID() }
+        .onChange(of: userImIDEncoded) { _ in handleDecodeImID() }
+        .onChange(of: orderIDDecoded) { _ in handleEncodeOrderID() }
+        .onChange(of: orderTypeDecoded) { _ in handleEncodeOrderID() }
+        .onChange(of: orderIDEncoded) { _ in handleDecodeOrderID() }
     }
     
     @ViewBuilder
@@ -95,12 +182,8 @@ struct Other: View {
                 .frame(height: 35, alignment: .leading)
                 
                 HStack {
-                    TextField("1679534610", text: $unixInput)
+                    textField("1679534610", text: $unixInput)
                         .focused($focus, equals: .unix)
-                        .frame(height: textFieldHeight)
-                        .padding(.horizontal, 10)
-                        .background(Color.background2, ignoresSafeAreaEdges: [])
-                        .cornerRadius(7)
                     
                     Button(width: 60, height: 25, colors: [.blue, .glue], radius: 7) {
                         unixInput = Date.now.unix.description
@@ -116,12 +199,8 @@ struct Other: View {
                 
                 
                 HStack {
-                    TextField("2023-03-23 09:23:30 +0800", text: $stringInput)
+                    textField("2023-03-23 09:23:30 +0800", text: $stringInput)
                         .focused($focus, equals: .string)
-                        .frame(height: textFieldHeight)
-                        .padding(.horizontal, 10)
-                        .background(Color.background2, ignoresSafeAreaEdges: [])
-                        .cornerRadius(7)
                 }
                 .frame(width: 219, height: 35)
                 
@@ -136,11 +215,6 @@ struct Other: View {
         .onChange(of: secondInput) { _ in handleDate2All() }
         .onChange(of: unixInput) { _ in handleUnix2All() }
         .onChange(of: stringInput) { _ in handleString2All() }
-        .hotkey(key: .kVK_Return) {
-            handleDate2All()
-            handleUnix2All()
-            handleString2All()
-        }
     }
     
     @ViewBuilder
@@ -292,6 +366,138 @@ extension Other {
         TextLink(name: name, link: link, width: 70, image: image) {
             focus = nil
         }
+    }
+}
+
+// MARK: - EmID
+extension Other {
+    func handleEncodeEmID() {
+        if focus != .emIDDecode { return }
+        if userEmIDDecoded.isEmpty {
+            userEmIDEncoded = ""
+            return
+        }
+        guard let id = BigInt(userEmIDDecoded, radix: 10) else {
+            userEmIDEncoded = ""
+            return
+        }
+
+        userEmIDEncoded = encodeEmID(id).description
+    }
+    
+    func handleDecodeEmID() {
+        if focus != .emIDEncode { return }
+        if userEmIDEncoded.isEmpty {
+            userEmIDDecoded = ""
+            return
+        }
+        guard let id = BigInt(userEmIDEncoded, radix: 10) else {
+            userEmIDDecoded = ""
+            return
+        }
+
+        userEmIDDecoded = decodeEmID(id).description
+    }
+    
+    
+    func encodeEmID(_ userID: BigInt) -> BigInt {
+        return (userID * BigInt(68718952447))%BigInt(9999999999)
+    }
+    
+    func decodeEmID(_ encodedUserID: BigInt) -> BigInt {
+        return ((encodedUserID*BigInt(8394529963))%BigInt(9999999999))
+    }
+}
+
+// MARK: - ImID
+extension Other {
+    func handleEncodeImID() {
+        if focus != .imIDDecode { return }
+        if userImIDDecoded.isEmpty {
+            userImIDEncoded = ""
+            return
+        }
+        guard let id = BigInt(userImIDDecoded, radix: 10) else {
+            userImIDEncoded = ""
+            return
+        }
+
+        userImIDEncoded = encodeImID(id).description
+    }
+    
+    func handleDecodeImID() {
+        if focus != .imIDEncode { return }
+        if userImIDEncoded.isEmpty {
+            userImIDDecoded = ""
+            return
+        }
+        guard let id = BigInt(userImIDEncoded, radix: 10) else {
+            userImIDDecoded = ""
+            return
+        }
+
+        userImIDDecoded = decodeImID(id).description
+    }
+    
+    func encodeImID(_ userID: BigInt) -> BigInt {
+        return (userID*BigInt(2147483647))%BigInt(9999999999)
+    }
+    
+    func decodeImID(_ encodeUserID: BigInt) -> BigInt {
+        return (encodeUserID*BigInt(9253624546)%BigInt(9999999999))
+    }
+}
+
+// MARK: - OrderID
+extension Other {
+    func handleEncodeOrderID() {
+        if focus != .orderIDDecode { return }
+        if orderIDDecoded.isEmpty {
+            orderIDEncoded = ""
+            return
+        }
+        
+        guard let id = BigInt(orderIDDecoded, radix: 10) else {
+            orderIDEncoded = ""
+            return
+        }
+
+        orderIDEncoded = orderTypeDecoded + "-" + encodeOrderID(id).description
+    }
+    
+    func handleDecodeOrderID() {
+        if focus != .orderIDEncode { return }
+        if orderIDEncoded.isEmpty {
+            orderTypeDecoded = ""
+            orderIDDecoded = ""
+            return
+        }
+        
+        let spIdx = orderIDEncoded.firstIndex(where: { $0.description == "-" })
+        var type = ""
+        var idNum = orderIDEncoded
+        if let idx = spIdx {
+            type = String(idNum.prefix(upTo: idx))
+            idNum = String(idNum.suffix(from: idx).dropFirst())
+        }
+        
+        guard let id = BigInt(idNum, radix: 10) else {
+            orderTypeDecoded = ""
+            orderIDDecoded = ""
+            return
+        }
+
+        orderTypeDecoded = type
+        orderIDDecoded = decodeOrderID(id).description
+    }
+    
+    
+    func encodeOrderID(_ userID: BigInt) -> BigInt {
+        return (userID * BigInt(274876858367))%BigInt(9999999999)
+    }
+    
+    func decodeOrderID(_ encodedUserID: BigInt) -> BigInt {
+        return ((encodedUserID*BigInt(8692771022))%BigInt(9999999999))
     }
 }
 

@@ -41,6 +41,7 @@
 		A8A32D8D2A687E1700090F1C /* Ditto in Frameworks */ = {isa = PBXBuildFile; productRef = A8A32D8C2A687E1700090F1C /* Ditto */; };
 		A8AECF892ABAEDDD00D15D92 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AECF882ABAEDDD00D15D92 /* CGFloat.swift */; };
 		A8AECF8B2ABAF2BD00D15D92 /* UpdaterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AECF8A2ABAF2BD00D15D92 /* UpdaterInteractor.swift */; };
+		A8C599DC2B1916B2004E5E49 /* BigInt in Frameworks */ = {isa = PBXBuildFile; productRef = A8C599DB2B1916B2004E5E49 /* BigInt */; };
 		A8D3212C287D225100216B61 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D3212B287D225100216B61 /* App.swift */; };
 		A8D3212E287D225100216B61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D3212D287D225100216B61 /* ContentView.swift */; };
 		A8D32130287D225400216B61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8D3212F287D225400216B61 /* Assets.xcassets */; };
@@ -125,6 +126,7 @@
 				A8A32D8D2A687E1700090F1C /* Ditto in Frameworks */,
 				A8A32D892A687E1200090F1C /* Sparkle in Frameworks */,
 				A8A32D8B2A687E1500090F1C /* Sworm in Frameworks */,
+				A8C599DC2B1916B2004E5E49 /* BigInt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +335,7 @@
 				A8A32D882A687E1200090F1C /* Sparkle */,
 				A8A32D8A2A687E1500090F1C /* Sworm */,
 				A8A32D8C2A687E1700090F1C /* Ditto */,
+				A8C599DB2B1916B2004E5E49 /* BigInt */,
 			);
 			productName = "Bito Pro Secret";
 			productReference = A8D32128287D225100216B61 /* Bito Pro Secret.app */;
@@ -366,6 +369,7 @@
 				A815198F2A0B4E4C00595D6B /* XCRemoteSwiftPackageReference "Ditto" */,
 				A8F90F7E2A56A3DD003AE46E /* XCRemoteSwiftPackageReference "Sworm" */,
 				A8A32D852A687A4600090F1C /* XCRemoteSwiftPackageReference "Sparkle" */,
+				A8C599DA2B1916B1004E5E49 /* XCRemoteSwiftPackageReference "BigInt" */,
 			);
 			productRefGroup = A8D32129287D225100216B61 /* Products */;
 			projectDirPath = "";
@@ -571,7 +575,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2T00Y;
+				CURRENT_PROJECT_VERSION = 2T01Y;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Bito Pro Secret/Preview Content\"";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
@@ -587,7 +591,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yanunyang.Bito-Pro-Secret";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -606,7 +610,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2T00Y;
+				CURRENT_PROJECT_VERSION = 2T01Y;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Bito Pro Secret/Preview Content\"";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
@@ -622,7 +626,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yanunyang.Bito-Pro-Secret";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -670,6 +674,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A8C599DA2B1916B1004E5E49 /* XCRemoteSwiftPackageReference "BigInt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/attaswift/BigInt";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		A8F90F7E2A56A3DD003AE46E /* XCRemoteSwiftPackageReference "Sworm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yanun0323/Sworm";
@@ -695,6 +707,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A815198F2A0B4E4C00595D6B /* XCRemoteSwiftPackageReference "Ditto" */;
 			productName = Ditto;
+		};
+		A8C599DB2B1916B2004E5E49 /* BigInt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8C599DA2B1916B1004E5E49 /* XCRemoteSwiftPackageReference "BigInt" */;
+			productName = BigInt;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

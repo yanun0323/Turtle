@@ -12,6 +12,7 @@ struct Info: View {
     @Environment(\.injected) private var container
     @Environment(\.openURL) private var openURL
     private let info: [String] = [
+        "1.0.1\n新功能：ID 加解密工具",
         "1.0.0\n新功能：JSON 匯出、匯入\n修復 MacOS Sonoma 深色模式問題",
         "0.8.3\n增加 mermaid 工具",
         "0.8.2\n更新時間轉換工具",
